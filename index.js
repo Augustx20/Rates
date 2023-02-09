@@ -13,6 +13,7 @@ let hoy = moment().format('dddd');
 console.log("Incio de Busqueda " + hoy );
 
 
+
    Colombia.Colombia();
    CostaRica.BancoCostaRica();
    Peru.BancoPeruEur();
@@ -23,8 +24,5 @@ console.log("Incio de Busqueda " + hoy );
    Honduras.Honduras()
    setTimeout(() => {
    Oanda.Oanda();
-   }, 10000);
-   setTimeout(() => {
-   Excel.SaveExcel();
-   }, 70000);
+   }, 10000); 
  

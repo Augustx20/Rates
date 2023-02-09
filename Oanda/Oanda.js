@@ -1,3 +1,4 @@
+
 const puppeteer = require('puppeteer');
 const moment = require('moment');       
 
@@ -35,12 +36,9 @@ const Oanda = async () => {
                     tmp.Data = document.querySelector("#cc-time-series-plot > div > div > div:nth-child(2) > div > table > tbody > tr:nth-child(2) > td:nth-child(2)").innerHTML;
                     return tmp;
                 });
-                books.push(book);
+                
                 let valor = book.Data.replace(/,/g,'.');
                 let numero = Number(valor)
-                // if (numero !== NaN) {
-                //     numero = 0
-                // }
                 oandax.push(numero)
             };
 
@@ -95,16 +93,28 @@ const Oanda = async () => {
                             // }
                             oandax.push(numeroXx)
                             }} else{}
-            await browser.close()
+            await browser.close();
 
+             
+// cambiar variable si el dato es Nan
 
+for (let i = 0; i < oandax.length ; i++) {
+    const element = oandax[i];
+    if( element == NaN){
+        let number0 = 0
+        let numeroX = Number(number0)
+        oandax.push(numeroX)
+        console.log("Buscador del for " + element)
 
-            console.log(oandax);
-            console.log("Busqueda Finalizada")
+    console.log(oandax);
+    console.log("Busqueda Finalizada")
+}}
 
+    console.log(oandax);
+    console.log("Busqueda Finalizada")
+            
 }
 module.exports = {
     Oanda,
     oandax,
-    
 }
