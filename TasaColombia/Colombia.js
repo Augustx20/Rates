@@ -28,7 +28,7 @@ const Colombia = async () => {
     let SinComa = procesad.replace(/\.+/g,"");
     let ConPunto = SinComa.replace(/,/g,'.')
     let numero = Number(ConPunto);
-    console.log(`Banco colombia ${numero}`);
+    console.log(`Banco Colombia ${numero}`);
     
     ArrayCo.push(numero)
     

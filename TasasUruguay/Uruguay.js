@@ -14,8 +14,8 @@ const BancoUruguayUSD = async () => {
             {heandless: false,});
             const page = await browser.newPage();
             await page.setUserAgent(header)
-            await page.setDefaultNavigationTimeout(0);
             await page.goto(url);
+            page.setDefaultNavigationTimeout(0);
             await page.waitForSelector('#\\32 225');
                     try {
                     const grabParagraphBancoUru= await page.evaluate(() =>{
@@ -39,11 +39,14 @@ const BancoUruguayUSD = async () => {
             let numero = Number(EditComa)
             console.log("Banco Uruguay " + numero|| undefined );
             ArrayU.push(numero)
+
+            
 }
 module.exports = {
 
     BancoUruguayUSD,
     ArrayU,
 }
+
 
 

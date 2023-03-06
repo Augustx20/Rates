@@ -88,31 +88,23 @@ const Oanda = async () => {
                             books.push(Honduras);
                             let valorXx = Honduras.Data.replace(/,/g,'.');
                             let numeroXx = Number(valorXx)
-                            // if (numeroXx == NaN) {
-                            //     numeroXx = 0
-                            // }
+                            
                             oandax.push(numeroXx)
                             }} else{}
             await browser.close();
 
-             
-// cambiar variable si el dato es Nan
+            // cambiar variable si el dato es Nan
+function Data(el){
+    if(el !== 'NaN')
+    return false;
+    return true;
 
-for (let i = 0; i < oandax.length ; i++) {
-    const element = oandax[i];
-    if( element == NaN){
-        let number0 = 0
-        let numeroX = Number(number0)
-        oandax.push(numeroX)
-        console.log("Buscador del for " + element)
+}
+console.log(oandax.find(Data))
+console.log(oandax)
+console.log(isNaN(oandax))
 
-    console.log(oandax);
-    console.log("Busqueda Finalizada")
-}}
 
-    console.log(oandax);
-    console.log("Busqueda Finalizada")
-            
 }
 module.exports = {
     Oanda,

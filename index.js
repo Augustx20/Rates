@@ -14,15 +14,19 @@ console.log("Incio de Busqueda " + hoy );
 
 
 
-   Colombia.Colombia();
-   CostaRica.BancoCostaRica();
-   Peru.BancoPeruEur();
-   Peru.BancoPeruUSD();
-   Chile.BancoChile();
-   Uruguay.BancoUruguayUSD();
-   Guatemala.PageGuatemala();
+   // Colombia.Colombia();
+   // CostaRica.BancoCostaRica();
+   // Peru.BancoPeruEur();
+   // Peru.BancoPeruUSD();
+   // Chile.BancoChile();\
+
+   // Uruguay.BancoUruguayUSD();
+   //Guatemala.PageGuatemala();
    Honduras.Honduras()
-   setTimeout(() => {
+   setTimeout(() => { 
    Oanda.Oanda();
    }, 10000); 
- 
+   // setTimeout(() => { 
+   // Excel.SaveExcel()
+   // }, 50000); 
+    
