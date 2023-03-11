@@ -12,17 +12,12 @@ const Honduras = async () => {
 
     if (hoy == fechaexacta) {
     console.log("Se ejecutara la tasa de Honduras")
-        
     const header = randomUseragent.getRandom()
-    const browser = await puppeteer.launch(
-        { 
-        handless: false 
-        }
-        );
+    const browser = await puppeteer.launch({ handless: false });
     const page = await browser.newPage();
     await page.setUserAgent(header)
-    await page.setDefaultNavigationTimeout(0);
-    await page.goto(url);
+    try {
+        await page.goto(url);
     await page.waitForSelector('#site-banco-honduras');
 
         const grabParagraphBancHn = await page.evaluate(() =>{
@@ -34,13 +29,13 @@ const Honduras = async () => {
      let arr = mensaje.split(' ')
      let numeroHn = arr[2];
     let numero = Number(numeroHn);
-
-    if (numero !== NaN) {
-        numero = 0;
-    }else{}
     console.log(`Banco Honduras ${numero}`);
     ArrayHn.push(numero)
-} else {}}  ;
+    } catch (err) {
+        console.log("The page Honduras didn't load")
+        let SegOption = 0;
+        ArrayHn.push(SegOption)
+    }} else {}}  ;
 
 module.exports = {
     ArrayHn,

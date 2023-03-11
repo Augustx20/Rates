@@ -12,21 +12,19 @@ const moment = require('moment');
 let hoy = moment().format('dddd');
 console.log("Incio de Busqueda " + hoy );
 
-
-
-   // Colombia.Colombia();
-   // CostaRica.BancoCostaRica();
-   // Peru.BancoPeruEur();
-   // Peru.BancoPeruUSD();
-   // Chile.BancoChile();\
-
-   // Uruguay.BancoUruguayUSD();
-   //Guatemala.PageGuatemala();
-   Honduras.Honduras()
-   setTimeout(() => { 
-   Oanda.Oanda();
-   }, 10000); 
-   // setTimeout(() => { 
-   // Excel.SaveExcel()
-   // }, 50000); 
+Colombia.Colombia();
+CostaRica.BancoCostaRica();
+Peru.BancoPeruUSD();
+Peru.BancoPeruEur();
+Chile.BancoChile();
+//ARG.CasoBancoArg();
+Uruguay.BancoUruguayUSD();
+Guatemala.PageGuatemala();
+Honduras.Honduras()
+setTimeout(() => { 
+Oanda.Oanda();
+}, 10000); 
+setTimeout(() => { 
+Excel.SaveExcel()
+}, 50000); 
     

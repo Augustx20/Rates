@@ -1,20 +1,17 @@
 const puppeteer = require('puppeteer');
 const randomUseragent = require('random-useragent');
 
+
 const ArrayCo = []
 const url = "https://www.banrep.gov.co/es"
 
 const Colombia = async () => {
-
     const header = randomUseragent.getRandom()
-    const browser = await puppeteer.launch(
-        { 
-        handless: false 
-        }
-        );
+    const browser = await puppeteer.launch({ handless: false });
     const page = await browser.newPage();
     await page.setUserAgent(header)
-    await page.setDefaultNavigationTimeout(0);
+
+try {
     await page.goto(url);
     await page.waitForSelector('#block-banrepindicatorsblock');
 
@@ -31,8 +28,12 @@ const Colombia = async () => {
     console.log(`Banco Colombia ${numero}`);
     
     ArrayCo.push(numero)
+} catch (err) { 
+    console.log("the page Colombia didn't load");
+    let SegOption = 0
+    ArrayCo.push(SegOption);
     
-}  
+}}  
 
 module.exports = {
     ArrayCo,

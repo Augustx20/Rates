@@ -5,9 +5,9 @@ const ChileArray =[];
 
 const BancoChile = async () => {
     /* Banco Chile  Usd*/
-
     const browser = await puppeteer.launch({heandless: false });
     const page = await browser.newPage();
+    try {
     await page.goto(url);
     await page.setViewport({ width: 1920, height: 1080 });
 
@@ -16,12 +16,9 @@ const BancoChile = async () => {
         return pgTag;
     });
 
-    // console.log("Banco Chile", grabParagraphBancoChileUsd);
-
     let EditComa = grabParagraphBancoChileUsd.replace(/,/g,'.')
     let numero = Number(EditComa)
-    console.log("Banco Chile " + numero|| undefined );
-
+    console.log("Banco Chile Usd " + numero|| undefined );
 
     ChileArray.push(numero);
 
@@ -34,19 +31,17 @@ const BancoChile = async () => {
         return pgTag;
     });
 
-    // console.log("Banco Chile", grabParagraphBancoChileEur);
-    
-
     let EditComaa = grabParagraphBancoChileEur.replace(/,/g,'.')
     let numeroo = Number(EditComaa)
-    console.log("Banco Chile " + numeroo|| undefined );
+    console.log("Banco Chile Eur " + numeroo|| undefined );
 
     ChileArray.push(numeroo);
     await browser.close()
-
-    // console.log(ChileArray);
-
-}
+    } catch (err) {
+        console.log("The page Chile didn't load");
+        let SegOption = 0;
+        ChileArray.push(SegOption)
+    }}
 
 module.exports = {
     BancoChile,

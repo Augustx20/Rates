@@ -1,44 +1,42 @@
 const puppeteer = require('puppeteer');
-const moment = require('moment');
-const randomUseragent = require('random-useragent');
-
 
 let url = "https://www.bna.com.ar/Personas"
 
 
-
 const CasoBancoArg = async () => {
-
-    const header = randomUseragent.getRandom() 
     const browser = await puppeteer.launch({heandless: false });
     const page = await browser.newPage();
-    page.setUserAgent(header)
-    await page.goto(url);
-    await page.waitForSelector('#billetes');
+    try {
+        await page.goto(url);
+        await page.waitForSelector('#billetes');
+        const grabParagraphCasoUsd = await page.evaluate(() =>{
+            const pgTag = document.querySelector("#billetes > table > tbody > tr:nth-child(1) > td:nth-child(2)").innerHTML;
+            return pgTag;
+        })
     
-    const grabParagraphCasoUsd = await page.evaluate(() =>{
-        const pgTag = document.querySelector("#billetes > table > tbody > tr:nth-child(1) > td:nth-child(2)").innerHTML;
-        return pgTag;
-    })
+        const grabParagraphCasoEur = await page.evaluate(() =>{
+            const pgTag = document.querySelector("#billetes > table > tbody > tr:nth-child(2) > td:nth-child(2)").innerHTML;
+            return pgTag;
+        })
 
-    const grabParagraphCasoEur = await page.evaluate(() =>{
-        const pgTag = document.querySelector("#billetes > table > tbody > tr:nth-child(2) > td:nth-child(2)").innerHTML;
-        return pgTag;
-    })
+        await browser.close()
+        //Eur
+        let valorDos = grabParagraphCasoEur.replace(/,/g,'.');
+        let numeroDos = Number(valorDos)
+        console.log("Banco Argentina Euro", numeroDos);
+        
+        //Usd
+           let valor = grabParagraphCasoUsd.replace(/,/g,'.');
+           let numero = Number(valor)
+           console.log("Banco Argentina Usd ", numero);
+    
+    } catch (err) {
+        console.log("the page didn't load")
+        return CasoBancoArg
+    }
 
-    await browser.close()
-//Eur
-let valorDos = grabParagraphCasoEur.replace(/,/g,'.');
-let numeroDos = Number(valorDos)
-console.log("Banco Argentina Euro", numeroDos);
-
-
-    //Usd
-   let valor = grabParagraphCasoUsd.replace(/,/g,'.');
-   let numero = Number(valor)
-   console.log("Banco Argentina Usdc xdsfb3  ", numero);
 }
-CasoBancoArg();
+
 
 const CasoTelefono = async () => {
 
@@ -54,12 +52,12 @@ const CasoTelefono = async () => {
         return pgTag;
     })
     await browser.close()
-
    let valor = grabParagraphCaso.replace(/,/g,'.');
    let numero = Number(valor)
-   console.log("Telefono Argentina ", numero);
+   let Telefono = (numero*(2.63/100)) + numero;
+   console.log("Telefono Argentina ", Telefono);
 }
-CasoTelefono();
+//CasoTelefono();
 
 const CasoNumeroDos = async () => {
 
@@ -94,4 +92,8 @@ const CasoNumeroDos = async () => {
    let numero = Number(valor)
    console.log("Compra ", numero + " Venta ",+ numeroUno);
 }
-CasoNumeroDos();
+//CasoNumeroDos();
+
+module.exports ={
+    CasoBancoArg
+}
