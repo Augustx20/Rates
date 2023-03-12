@@ -87,7 +87,15 @@ for (let enlaceh of enlacesxx) {
   oandax.push(numeroXx);}
 } else {}
 await browser.close();
-console.log(oandax)};
+
+
+
+var j = oandax.map(i =>{ return isNaN(i) ? 0 : i});
+    
+    console.log(j)
+
+//console.log(oandax)
+};
 
 
 module.exports = {

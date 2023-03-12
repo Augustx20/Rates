@@ -40,7 +40,9 @@ const BancoChile = async () => {
     } catch (err) {
         console.log("The page Chile didn't load");
         let SegOption = 0;
+        let SegOptionx = 0;
         ChileArray.push(SegOption)
+        ChileArray.push(SegOptionx)
     }}
 
 module.exports = {

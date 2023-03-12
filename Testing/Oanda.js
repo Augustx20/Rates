@@ -38,8 +38,15 @@ const Oanda = async () => {
     let numero = Number(valor);
     oandax.push(numero);
 
-    console.log(oandax);
+   // console.log(oandax);
     
+    //var i = [NaN, 1,2,3];
+
+    var j = oandax.map(i =>{ return isNaN(i) ? 0 : i});
+    
+    console.log(j)
+
+
   }
 await browser.close();
 
