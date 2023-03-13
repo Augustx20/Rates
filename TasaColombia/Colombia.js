@@ -3,7 +3,7 @@ const randomUseragent = require('random-useragent');
 
 
 const ArrayCo = []
-const url = "https://www.banrep.gov.co/es"
+const url = "https://www.banrep.go.co/es"
 
 const Colombia = async () => {
     const header = randomUseragent.getRandom()
@@ -30,6 +30,7 @@ try {
     ArrayCo.push(numero)
 } catch (err) { 
     console.log("the page Colombia didn't load");
+    await browser.close()
     let SegOption = 0
     ArrayCo.push(SegOption);
     

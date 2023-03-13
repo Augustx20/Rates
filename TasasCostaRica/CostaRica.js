@@ -20,9 +20,9 @@ try {
     let procesado = grabParagraphBancoCr.replace(/\s+/g,"");
     
     let valor = procesado.replace(/,/g,'.')
-    let numero = Number(valor);
-    console.log("Banco Costa Rica ", numero)
-    Cr.push(numero)
+    //let numero = Number(valor);
+    console.log("Banco Costa Rica ", valor)
+    Cr.push(valor)
 } catch (err) {
     console.log("The page Costa Rica didn't load")
 let SegOption = 0;
