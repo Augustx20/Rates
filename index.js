@@ -19,6 +19,7 @@ console.log("Incio de Busqueda " + hoy );
 // Peru.BancoPeruEur();
 // Chile.BancoChile();
 ARG.CasoBancoArg();
+ARG.CasoNumeroDos();
 // Uruguay.BancoUruguayUSD();
 // Guatemala.PageGuatemala();
 // Honduras.Honduras()
