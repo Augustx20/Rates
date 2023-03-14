@@ -50,7 +50,6 @@ const CasoBancoArg = async () => {
 } 
 }
 
-
 //Divisa
 const CasoNumeroDos = async () => {
 

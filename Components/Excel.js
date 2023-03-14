@@ -1,12 +1,12 @@
 const xlsx = require("xlsx")
-const CostaRica = require('../TasasCostaRica/CostaRica');
-const Uruguay = require('../TasasUruguay/Uruguay');
-const Colombia = require('../TasaColombia/Colombia');
-const Peru = require('../TasasPeru/Peru')
-const Chile = require('../TasasChile/Chile');
-const Guatemala = require('../TasaGuatemala/Guatemala')
-const Oanda = require('../Oanda/Oanda');
-const Honduras = require('../TasaHonduras/Honduras')
+const CostaRica = require('../ExchangeRate/CostaRica/CostaRica');
+const Uruguay = require('../ExchangeRate/Uruguay/Uruguay');
+const Colombia = require('../ExchangeRate/Colombia/Colombia');
+const Peru = require('../ExchangeRate/Peru/Peru')
+const Chile = require('../ExchangeRate/Chile/Chile');
+const Guatemala = require('../ExchangeRate/Guatemala/Guatemala')
+const Oanda = require('../ExchangeRate/Oanda/Oanda');
+const Honduras = require('../ExchangeRate/Honduras/Honduras')
 
 const SaveExcel = async () => {
 
@@ -21,7 +21,7 @@ const SaveExcel = async () => {
     let caso7 = Chile.ChileArray[1];
     let caso8 = Guatemala.GTQ[0]
     let caso9 = Honduras.ArrayHn[0]
-//  Oanda
+    //  Oanda
     let EURUSD = Oanda.oandax[0];
     let EURCOP = Oanda.oandax[1];
     let CNYUSD = Oanda.oandax[2];
