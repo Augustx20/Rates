@@ -73,6 +73,7 @@ wb.Sheets['Datos'] = ws;
   xlsx.writeFile(wb, "Datos.xlsx"); 
   
   console.log("Excel Actualizado")
+ 
 }, 6500)
 
 }

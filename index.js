@@ -9,9 +9,9 @@ const Honduras = require('./ExchangeRate/Honduras/Honduras');
 const Excel = require('./Components/Excel');
 const ARG = require('./Components/Testing/CaseArg');
 const moment = require('moment');
-
 let hoy = moment().format('dddd');
-console.log("Incio de Busqueda " + hoy );
+
+
 
 Colombia.Colombia();
 CostaRica.BancoCostaRica();
