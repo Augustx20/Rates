@@ -8,7 +8,7 @@ const data = [];
 
 const read = async () => {
 
-const workbook = XLSX.readFile('C:/Users/Usuario/Desktop/Tasas-master/config.xlsx');
+const workbook = XLSX.readFile('C:/Users/Usuario/Desktop/Tasas/config.xlsx');
 
 const sheetName = workbook.SheetNames[0];
 const worksheet = workbook.Sheets[sheetName];
