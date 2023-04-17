@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const Info = require('../info')
 
 const h = [];
-const OandaArray = ["value"];
+const OandaArray = ["Value"];
 
 const Oanda = async () => {
 const browser = await puppeteer.launch();

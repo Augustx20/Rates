@@ -7,4 +7,4 @@ oanda.Oanda()
 
 setTimeout(() => {
 create.CreateExcel()
-}, 10000);
+}, 15000);

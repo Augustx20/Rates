@@ -35,8 +35,8 @@ for (let row = range.s.r; row <= range.e.r; row++) {
 }
 
 console.log(data);
-console.log('Columna B:', columnB);
-console.log('Columna C:', columnC);
+//console.log('Columna B:', columnB);
+//console.log('Columna C:', columnC);
 }
 
 module.exports = {
