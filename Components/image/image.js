@@ -235,7 +235,6 @@ if( hoy == fechaexacta){
         // Open URL in current page
         await page.goto(website_url);
         await page.waitForSelector(selector);
-        
         // Capture screenshot
         await page.screenshot({
           path: `Oanda_${i+1}.jpg`,
