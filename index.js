@@ -8,13 +8,13 @@ oanda.Oanda()
 function ejecutarProceso() {
     const datos = read.data;
     const cantidadDatos = datos.length;
-    let tiempoEspera = cantidadDatos * 2500; 
+    let tiempoEspera = cantidadDatos * 10000; 
   
     tiempoEspera = Math.min(tiempoEspera, 100000);
     setTimeout(() => {
         create.CreateExcel()
     }, tiempoEspera);
-    console.log(tiempoEspera)
+    //console.log(tiempoEspera)
   }
   
-  ejecutarProceso()
+  ejecutarProceso() 
