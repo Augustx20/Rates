@@ -83,18 +83,18 @@ if( hoy == fechaexacta){
         "https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
         "https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
         "https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Jpy&to=COP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Brl&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Krw&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Eur&to=Clp&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Usd&to=Clp&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Brl&to=Hnl&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Cny&to=Hnl&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Eur&to=Hnl&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Gbp&to=Hnl&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Mxn&to=Hnl&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Hkd&to=Usd&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Hkd&to=Hnl&amount=1"
+        "https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=EUR&to=CLP&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=USD&to=CLP&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=BRL&to=HNL&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=CNY&to=HNL&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=EUR&to=HNL&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=GBP&to=HNL&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=MXN&to=HNL&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=HKD&to=USD&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=HKD&to=HNL&amount=1"
     
     ];
     
@@ -207,11 +207,11 @@ if( hoy == fechaexacta){
         "https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
         "https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
         "https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Jpy&to=COP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Brl&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Krw&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Eur&to=Clp&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Usd&to=Clp&amount=1"
+        "https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=EUR&to=Clp&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=USD&to=Clp&amount=1"
     ];
      
     const selector = '#scroll-wrap > main > div.block.content-cards-lite-row.card-cheat_sheet_row.background--white > div > div > div.col.cheat_sheet > div > div:nth-child(2) > div';
