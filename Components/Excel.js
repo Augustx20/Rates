@@ -25,8 +25,8 @@ const CreateExcel = async () => {
   
   XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
   XLSX.writeFile(workbook, 'OandaRates.xlsx');
+ console.log("Creacion del Excel Finalizada") 
 }
-
 module.exports = {
     CreateExcel
 }

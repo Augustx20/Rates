@@ -2,19 +2,19 @@ const read = require('./Components/info')
 const create = require('./Components/Excel')
 const oanda = require('./Components/Oanda/Oanda')
 
-read.read()
-oanda.Oanda()
 
-function ejecutarProceso() {
-    const datos = read.data;
-    const cantidadDatos = datos.length;
-    let tiempoEspera = cantidadDatos * 10000; 
-  
-    tiempoEspera = Math.min(tiempoEspera, 100000);
-    setTimeout(() => {
-        create.CreateExcel()
-    }, tiempoEspera);
-    //console.log(tiempoEspera)
+async function main() {
+  await read.read()
+  const data = await oanda.Oanda()
+  const processedData = processData(data)
+  await create.CreateExcel(processedData)
+
+}
+
+function processData(data) {
+    // procesar los datos de la API de Oanda para su uso en el archivo Excel
+    return processData
   }
-  
-  ejecutarProceso() 
+
+
+main()
