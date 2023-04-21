@@ -1,4 +1,5 @@
 /node_modules
+/Components
 Exchange Rate Acon.xlsx
 Exchange Rate Process- VF 2022.xlsm
 Exchange Rate Process- VF.xlsx
@@ -9,6 +10,7 @@ PaisesFaltantesImplementacion.xlsx
 StatusExchangeRate.xlsx
 EXCHRATES$.lnk
 Exchange rate SCA - Template.psl
+OandaRates.xlsx
 Oanda_1.jpg
 Oanda_2.jpg
 Oanda_3.jpg
@@ -27,3 +29,4 @@ Oanda_15.jpg
 Oanda_16.jpg
 Oanda_17.jpg
 BancoPeru.jpg
+Components/TestingWork/caso.js
