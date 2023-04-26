@@ -78,28 +78,26 @@ if( hoy == fechaexacta){
 
 
     const urlArray = [
-        "https://www.oanda.com/currency-converter/es/?from=EUR&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=EUR&to=COP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=EUR&to=CLP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=USD&to=CLP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=BRL&to=HNL&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=CNY&to=HNL&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=EUR&to=HNL&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=GBP&to=HNL&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=MXN&to=HNL&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=HKD&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=HKD&to=HNL&amount=1"
-    
+      "https://www.oanda.com/currency-converter/es/?from=EUR&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=EUR&to=COP&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=USD&to=CLP&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=EUR&to=CLP&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=EUR&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=EUR&to=COP&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
+
     ];
     
     
-    const selector = '#scroll-wrap > main > div.block.content-cards-lite-row.card-cheat_sheet_row.background--white > div > div > div.col.cheat_sheet > div > div:nth-child(2) > div';
+    const selector = '#scroll-wrap > main > div.block.content-cards-lite-row.card-currency_converter_row.background--white > div > div > div.content-card-lite.content-cards__card.card-main > div';
     
     
     (async () => {
@@ -154,7 +152,7 @@ if( hoy == fechaexacta){
       await page.screenshot({ path: `BancoPeru.jpg` });
                 
     } catch (err) {
-      console.log("Error de busqueda en la imagen de Peru")
+      console.error(`Error en la busqueda: ${err} Peru`);
       await browser.close()  
     }
     //Banco Uruguay
@@ -166,7 +164,7 @@ if( hoy == fechaexacta){
       await elemen.screenshot({ path: `BancoUruguay.jpg` });
     
     } catch (err) {
-      console.log("Error en la busqueda en la imagen de Uruguay")
+      console.error(`Error en la busqueda: ${err}`);
       await browser.close() 
     }
     //Banco Chile
@@ -176,7 +174,7 @@ if( hoy == fechaexacta){
       await page.screenshot({ path: `BancoChile.jpg` });
     
     } catch (err) {
-      console.log("Error en la busqueda en la imagen de Chile")
+      console.error(`Error en la busqueda: ${err} Uruguay`);
       await browser.close() 
     }
     // Banco Colombia 
@@ -186,7 +184,7 @@ if( hoy == fechaexacta){
       await element.screenshot({ path: `BancoColombia.jpg` });
     
     } catch (err) {
-      console.log("Error en la busqueda en la imagen de Colombia")
+      console.error(`Error en la busqueda: ${err} Colombia`);
       await browser.close()   
     }
     // Banco Costa Rica
@@ -195,26 +193,27 @@ if( hoy == fechaexacta){
     await page.setViewport({ width: 500, height: 680 });
     await page.screenshot({ path: `BancoCostaRica.jpg` });
 } catch (err) {
-  console.log("Error en la busqueda en la imagen de Costa Rica")
+  await browser.close() 
+  console.error(`Error en la busqueda: ${err} CostaRica`);
   await browser.close()
 }    
 }
   const Oanda = async () => {
 
     const urlArray = [
-        "https://www.oanda.com/currency-converter/es/?from=EUR&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=EUR&to=COP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=EUR&to=Clp&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=USD&to=Clp&amount=1"
+      "https://www.oanda.com/currency-converter/es/?from=EUR&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=EUR&to=COP&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=USD&to=CLP&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=EUR&to=CLP&amount=1",
     ];
      
-    const selector = '#scroll-wrap > main > div.block.content-cards-lite-row.card-cheat_sheet_row.background--white > div > div > div.col.cheat_sheet > div > div:nth-child(2) > div';
+    const selector = '#scroll-wrap > main > div.block.content-cards-lite-row.card-currency_converter_row.background--white > div > div > div.content-card-lite.content-cards__card.card-main > div';
     
     
     (async () => {
@@ -234,7 +233,9 @@ if( hoy == fechaexacta){
     
         // Open URL in current page
         await page.goto(website_url);
-        await page.waitForSelector(selector);
+        await page.waitForNavigation(
+        await page.waitForSelector(selector, )
+        )
         // Capture screenshot
         await page.screenshot({
           path: `Oanda_${i+1}.jpg`,
@@ -245,12 +246,12 @@ if( hoy == fechaexacta){
       console.log("Busqueda finalizada")
     } catch (err) {
       await browser.close();
-      console.log("Error en la busqueda de Oanda")
+      console.error(`Error en la busqueda: ${err}`);
     }
       // Create a new page
       
     })();
     }
     Oanda();
-    BancosImg();
+    BancosImg()
 }
