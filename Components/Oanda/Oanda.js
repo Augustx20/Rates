@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const Info = require('../info')
 
 const h = [];
-const OandaArray = ["Value"];
+const OandaArray = [];
 
 const Oanda = async () => {
 const browser = await puppeteer.launch();
@@ -29,7 +29,7 @@ try {
 
 await browser.close();
 
-  console.log(OandaArray) 
+  console.log('OandaRate :', OandaArray) 
   
 } catch (err) {
   console.error(`Error en la busqueda: ${err}`);
