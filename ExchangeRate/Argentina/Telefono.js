@@ -16,7 +16,7 @@ const CasoTelefono = async () => {
         //Telefono
        let valorTres = grabParagraphCaso.replace(/,/g,'.');
        let numeroTres = Number(valorTres)
-       let Telefono = (numeroTres*(2.63/100) + numeroTres);
+       let Telefono = (numeroTres*(3.3/100) + numeroTres);
        let roundedNumber = Math.round(Telefono * 1000) / 1000;
        console.log("Tasa KN Telefono ", roundedNumber);
        console.log("Cotizacion Billete Venta USD", numeroTres);
