@@ -15,9 +15,7 @@ async function main() {
 }
 
 function processData(data , dataOanda ) {
-    // procesar los datos de la API de Oanda para su uso en el archivo Excel
     return processData
-  }
+}
 
  main()
-
