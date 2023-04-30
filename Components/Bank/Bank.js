@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const Info = require('../info')
+const random_useragent = require('random-useragent')
 
 const Bancos = [];
 const OandaB = async () => {
@@ -10,6 +11,7 @@ const OandaB = async () => {
     for (let i = 0; i < Info.DataBank.length; i++) {
       const enlace = Info.DataBank[i];
       const Sele = Info.HTMLS[i];
+      await page.setUserAgent(random_useragent.getRandom())
 
       await page.goto(enlace);
       // await page.waitForSelector("#cc-time-series-plot");
