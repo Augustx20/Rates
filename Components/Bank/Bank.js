@@ -19,7 +19,7 @@ const OandaB = async () => {
       const book = await page.evaluate(Sele => {
         return document.querySelector(Sele).innerHTML;
       }, Sele);
-      
+
       const valor = book.replace(/,/g, ".");
       const numero = Number(valor) || 0;
       Bancos.push(numero);

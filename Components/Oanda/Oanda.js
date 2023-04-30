@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
-const Info = require('../info')
+const Info = require('../info');
+const { info } = require("console");
 
 const h = [];
 const OandaArray = [];
@@ -9,7 +10,8 @@ const browser = await puppeteer.launch();
 const page = await browser.newPage();
 
 try {
-  for (let enlace of Info.data) {
+  for (let i = 0; i < Info.data.length; i++) {
+    const enlace = Info.data[i]
     await page.goto(enlace);
     await page.waitForSelector("#cc-time-series-plot");
     const book = await page.evaluate(() => {
@@ -19,6 +21,12 @@ try {
     ).innerHTML;
     return tmp;
     });
+
+    // Capture screenshot
+    await page.screenshot({
+    path: `Oanda_${i+1}.jpg`,
+    });
+
     let valor = book.Data.replace(/,/g, ".");
     let numero = Number(valor);
     h.push(numero);
@@ -29,7 +37,7 @@ try {
 
 await browser.close();
 
-  console.log('OandaRate :', OandaArray) 
+console.log('OandaRate :', OandaArray) 
   
 } catch (err) {
   console.error(`Error en la busqueda: ${err}`);

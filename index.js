@@ -16,4 +16,4 @@ function processData(data , dataOanda ) {
     return processData
 }
 
- main()
+main()
