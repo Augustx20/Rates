@@ -1,7 +1,6 @@
 const puppeteer = require("puppeteer");
 const Info = require('../info');
-const { info } = require("console");
-
+const fs = require('fs')
 const h = [];
 const OandaArray = [];
 
@@ -37,11 +36,16 @@ try {
 
 await browser.close();
 
+if(fs.existsSync('./BaseDate.txt')){
+  fs.appendFileSync('./BaseDate.txt', "Oanda Completado,")
+  }
 console.log('OandaRate :', OandaArray) 
   
 } catch (err) {
-  console.error(`Error en la busqueda: ${err}`);
   await browser.close();
+  if(fs.existsSync('./BaseDate.txt')){
+    fs.appendFileSync('./BaseDate.txt', "Oanda Error," + console.error(`Error en la busqueda: ${err}`) +',')
+    }
 }};
 
 module.exports = {
