@@ -26,6 +26,6 @@
   "homepage": "https://github.com/Augustx20/Tasas#readme",
   "description": "",
   "devDependencies": {
-    "puppeteer": "^19.5.0"
+    "puppeteer": "^20.0.0"
   }
 }

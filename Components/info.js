@@ -7,7 +7,8 @@ const DataBank = [];
 const columnG = [];
 const columnH = [];
 const HTMLS = [];
-const data = []
+const data = [];
+const IMGUrl = [];
 
 const read = async () => {
   const workbook = XLSX.readFile('C:/Users/Usuario/Desktop/Tasas/config.xlsx');
@@ -17,7 +18,7 @@ const read = async () => {
 
   const range = XLSX.utils.decode_range(worksheet['!ref']);
   range.s.r = 1; // comienza en la fila 2
-  range.e.c = 8; // lee hasta la columna I (índice 8)
+  range.e.c = 13; // lee hasta la columna I (índice 8)
 
   for (let row = range.s.r; row <= range.e.r; row++) {
     const cellA = worksheet[XLSX.utils.encode_cell({ r: row, c: range.s.c })];
@@ -54,10 +55,15 @@ const read = async () => {
     if (cellI && cellI.v !== undefined && cellI.v !== null && cellI.v !== '') {
       HTMLS.push(cellI.v);
     }
-  }
+    const cellK = worksheet[XLSX.utils.encode_cell({ r: row, c: range.s.c + 10 })];
+    if (cellK && cellK.v !== undefined && cellK.v !== null && cellK.v !== '') {
+      IMGUrl.push(cellK.v);
+    }
 
+  }
+  
   console.log('Oanda :',data);
-  //console.log('Columna B:', columnB);
+  console.log(IMGUrl);
   //console.log('Columna C:', columnC);
   console.log('Bancos :', DataBank);
   //console.log('Columna G:', columnG);
@@ -75,5 +81,5 @@ module.exports = {
   columnH,
   HTMLS,
   data,
-
+  IMGUrl
 };
