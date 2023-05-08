@@ -9,9 +9,11 @@ const columnH = [];
 const HTMLS = [];
 const data = [];
 const IMGUrl = [];
-
+const SeleC = [];
+const wid = [];
+const hei = []
 const read = async () => {
-  const workbook = XLSX.readFile('C:/Users/Usuario/Desktop/Tasas/config.xlsx');
+  const workbook = XLSX.readFile('C:/Users/augusto.machado/Desktop/Tasas/config.xlsx');
 
   const sheetName = workbook.SheetNames[0];
   const worksheet = workbook.Sheets[sheetName];
@@ -59,12 +61,28 @@ const read = async () => {
     if (cellK && cellK.v !== undefined && cellK.v !== null && cellK.v !== '') {
       IMGUrl.push(cellK.v);
     }
+  
+    const cellL = worksheet[XLSX.utils.encode_cell({ r: row, c: range.s.c + 11 })];
+    if (cellL && cellL.v !== undefined && cellL.v !== null && cellL.v !== '') {
+    SeleC.push(cellL.v);
+    }
 
+    const cellM = worksheet[XLSX.utils.encode_cell({ r: row, c: range.s.c + 12 })];
+    if (cellM && cellM.v !== undefined && cellM.v !== null && cellM.v !== '') {
+      wid.push(cellM.v);
+    }
+    
+    const cellN = worksheet[XLSX.utils.encode_cell({ r: row, c: range.s.c + 13 })];
+    if (cellN && cellN.v !== undefined && cellN.v !== null && cellN.v !== '') {
+      hei.push(cellN.v);
+    }
   }
   
-  console.log('Oanda :',data);
-  console.log(IMGUrl);
-  //console.log('Columna C:', columnC);
+  console.log('Oanda :', data);
+  //console.log(IMGUrl);
+  //console.log(SeleC)
+  //console.log(wid);
+  //console.log(hei);
   console.log('Bancos :', DataBank);
   //console.log('Columna G:', columnG);
   //console.log('Columna H:', columnH);
@@ -81,5 +99,8 @@ module.exports = {
   columnH,
   HTMLS,
   data,
-  IMGUrl
+  IMGUrl,
+  hei,
+  wid,
+  SeleC
 };

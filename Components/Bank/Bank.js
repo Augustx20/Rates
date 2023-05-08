@@ -16,10 +16,9 @@ const OandaB = async () => {
       await page.setUserAgent(random_useragent.getRandom())
 
       await page.goto(enlace);
-      // await page.waitForSelector("#cc-time-series-plot");
 
       const book = await page.evaluate(Sele => {
-        return document.querySelector(Sele).innerHTML;
+        return document.querySelector(Sele).innerHTML        ;
       }, Sele);
 
       const valor = book.replace(/,/g, ".");
@@ -32,10 +31,12 @@ const OandaB = async () => {
       fs.appendFileSync('./BaseDate.txt', "Bancos Completado,")
     } 
 
+    //var j = Bancos.map(i =>{ return isNaN(i) ? 0 : i});
+    //Bancos.push(...j);
+
     console.log('BancosRate :', Bancos);
     return Bancos;
 
-    
   } catch (err) {
     console.log(Bancos, "Estos tipos de cambios fueron actualizados");
     if(fs.existsSync('./BaseDate.txt')){
