@@ -1,0 +1,14 @@
+4.2Z FTE, hablar reporting CC AGUS
+7.8 agustina 
+8.4 no desarrollado aun
+enviar email por 5.1
+
+
+El objetivo de la herramienta es admintrar los tiempos y la coordinacion de tarea para los equipos que debena cargar los tipos de cambio manualmente. Con esta herramienta podra buscar automaticamente.	
+
+Tambien existira la posibilidad de pedir nuevas busquedas si lo necesita y nuevas mejoras mediante el pasar de los meses.
+A traves de un Excel podra configurar su propia busqueda para que no sea modificada por otros usuarios.
+
+Podra Corroborar si el proceso se busco correctamente mediante el cuadrante central, mediante vayan pasando los minutos tendra una verificacion de color  se completo o si hubo algun error sobre la misma. aca buscaría un sinónimo de mediante
+
+Como resultado final, obtendremos un excel con las valores buscados anteriormente, para que la informacion la pueda enviar o utilizar desde mi computador.
