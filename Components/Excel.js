@@ -29,11 +29,11 @@ const saveExcel = async () => {
       Peru.Peusd[0],
       Chile.ChileArray,
       Guatemala.GTQ[0],
-      Honduras.ArrayHn[0],
+      Honduras.ArrayHn,
       Oanda.OandaArray,
     ]);
     //  Oanda
-    const [eurusd, eurcop, cnyusd, jpyusd, cnycop, jpycop, brlusd, krwusd, usdclp, eurclp, brlhnl, cnyhnl, eurhnl, gbphnl, jpyhnl, mxnhnl, hkdusd, hkdhn] = oanda;
+    const [eurusd, eurcop, cnyusd, jpyusd, cnycop, jpycop, brlusd, krwusd, usdclp, eurclp, brlhnl, cnyhnl, gbphnl, jpyhnl, mxnhnl, hkdusd, hkdhn] = oanda;
 
     const data = [     
       ["", "Bancos", "", "", "", "Oanda"],
@@ -46,14 +46,13 @@ const saveExcel = async () => {
       ["CL70", "USD CLP", cl[0], "", "", "JPY COP", jpycop],
       ["CL70", "EUR CLP", cl[1], "", "", "BRL USD", brlusd],
       ["GT79","USD GTQ",gt,"","","KRW USD",krwusd],
-      ["HN79","USD HNL",hn,"","","USD CLP",usdclp],
-      ["AR71","USD Billete ARS","","","","EUR CLP",eurclp],
-      ["AR71","EUR Billete ARS","","","","BRL HNL",brlhnl],
-      ["AR71","USD Divisa COMPRA","","","","CNY HNL",cnyhnl],
-      ["AR71","USD Divisa VENTA","","","","EUR HNL",eurhnl],
-      ["AR71","USD Billete VENTA","","","","GBP HNL",gbphnl],
-      ["","","","","","JPY HNL",jpyhnl],
-      ["","","","","","MXN HNL",mxnhnl],
+      ["HN79","USD HNL",hn[0],"","","USD CLP",usdclp],
+      ["HN79","EUR HNL",hn[1],"","","EUR CLP",eurclp],
+      ["AR71","USD Billete ARS","","","","BRL HNL",brlhnl],
+      ["AR71","EUR Billete ARS","","","","CNY HNL",cnyhnl],
+      ["AR71","USD Divisa COMPRA","","","","GBP HNL",gbphnl],
+      ["AR71","USD Divisa VENTA","","","","JPY HNL",jpyhnl],
+      ["AR71","USD Billete VENTA","","","","MXN HNL",mxnhnl],
       ["","","","","","HKD USD",hkdusd],
       ["","","","","","HKD HNL",hkdhn]
     ];

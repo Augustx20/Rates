@@ -1,3 +1,4 @@
+
 const puppeteer = require('puppeteer');
 const moment = require('moment');
 
@@ -9,21 +10,21 @@ const urlChile = "https://www.bcentral.cl/inicio";
 const urlColombia = "https://www.banrep.gov.co/es/"
 const urlCostaRica = "https://gee.bccr.fi.cr/indicadoreseconomicos/Cuadros/frmVerCatCuadro.aspx?idioma=1&CodCuadro=%20400"
 const urlPeru = "https://www.sbs.gob.pe/app/pp/SISTIP_PORTAL/Paginas/Publicacion/TipoCambioPromedio.aspx "
-const selectorCO = "#block-banrepindicatorsblock > div > div.column.large-3.indicator.indicator--trm"
-const selectorUY = "#ctl00_ctl63_g_8899d5e6_dcfc_4225_83da_4a766737a409 > div > div > div"  
-
+const selectorCO = ""  
+const SelectorCR = "#Form1"
 
 if( hoy == fechaexacta){
   console.log("Buscando...")
   const BancosImg = async () => {
           // Banco Peru USD EUR
-          const browser = await puppeteer.launch({heandless: false });
+          const browser = await puppeteer.launch({});
           const page = await browser.newPage();   
       try {
 
       await page.goto(urlPeru);
       await page.setViewport({ width: 600, height: 600 });
       await page.screenshot({ path: `BancoPeru.jpg` });
+      await page.close()
                 
     } catch (err) {
       console.log("Error de busqueda en la imagen de Peru")
@@ -33,45 +34,49 @@ if( hoy == fechaexacta){
     try {
       await page.goto(url);
       await page.setViewport({ width: 1920, height: 1080 });
-      const elemen = await page.$(selectorUY)
-      await elemen.screenshot({ path: `BancoUruguay.jpg` });
-    
+      await page.waitForSelector('#ctl00_ctl63_g_8899d5e6_dcfc_4225_83da_4a766737a409 > div > div > div')
+      const exchange = await page.$('#ctl00_ctl63_g_8899d5e6_dcfc_4225_83da_4a766737a409 > div > div > div')
+      await exchange.screenshot({ path: 'BancoUruguay.jpg' });
+    await page.close()
     } catch (err) {
       console.log("Error en la busqueda en la imagen de Uruguay")
-      await browser.close() 
-    }
-    //Banco Chile
-    try {
-      await page.goto(urlChile);
-      await page.setViewport({ width: 1000, height: 500 });
-      await page.screenshot({ path: `BancoChile.jpg` });
-    
-    } catch (err) {
-      console.log("Error en la busqueda en la imagen de Chile")
       await browser.close() 
     }
     // Banco Colombia 
     try {
       await page.goto(urlColombia);
       const element = await page.$(selectorCO);
-      await element.screenshot({ path: `BancoColombia.jpg` });
-    
+      await element.screenshot({ path: 'BancoColombia.jpg' });
+      await page.close() 
     } catch (err) {
       console.log("Error en la busqueda en la imagen de Colombia")
       await browser.close()   
     }
-    // Banco Costa Rica
 
+    //Banco Chile
+    try {
+      await page.goto(urlChile);
+      await page.setViewport({ width: 1000, height: 500 });
+      await page.screenshot({ path: 'BancoChile.jpg' });
+      await page.close()
+    } catch (err) {
+      console.log("Error en la busqueda en la imagen de Chile")
+      await browser.close() 
+    }
+
+    // Banco Costa Rica
     try {
     await page.goto(urlCostaRica);
     await page.setViewport({ width: 500, height: 680 });
-    await page.screenshot({ path: `BancoCostaRica.jpg` });
+    const element = await page.$(SelectorCR)
+    await element.screenshot({ path: 'BancoCostaRica.jpg' });
+    await page.close()
+    await browser.close()
 } catch (err) {
   console.log("Error en la busqueda en la imagen de Costa Rica")
   await browser.close()
 }    
-  }
-
+}
   const Oanda = async () => {
 
     console.log("Buscando imagenes")
@@ -83,18 +88,18 @@ if( hoy == fechaexacta){
         "https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
         "https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
         "https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Jpy&to=COP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Brl&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Krw&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Eur&to=Clp&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Usd&to=Clp&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Brl&to=Hnl&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Cny&to=Hnl&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Eur&to=Hnl&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Gbp&to=Hnl&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Mxn&to=Hnl&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Hkd&to=Usd&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Hkd&to=Hnl&amount=1"
+        "https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=EUR&to=CLP&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=USD&to=CLP&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=BRL&to=HNL&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=CNY&to=HNL&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=EUR&to=HNL&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=GBP&to=HNL&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=MXN&to=HNL&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=HKD&to=USD&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=HKD&to=HNL&amount=1"
     
     ];
     
@@ -142,29 +147,36 @@ if( hoy == fechaexacta){
     Oanda();
     BancosImg();
 } else{
-
   const BancosImg = async () => {
-    // Banco Peru USD EUR
-  const browser = await puppeteer.launch({heandless: false });
-  const page = await browser.newPage();   
- 
+        // Banco Peru USD EUR
+        const browser = await puppeteer.launch({});
+        const page = await browser.newPage();   
+
+     // Banco Colombia 
+    //  try {
+    //   await page.goto(urlColombia);
+    //   await page.waitForSelector('#block-banrepindicatorsblock > div > div.column.large-3.indicator.indicator--trm')
+    //   const element = await page.$('#block-banrepindicatorsblock > div > div.column.large-3.indicator.indicator--trm');
+    //   await element.screenshot({ path: 'BancoColombia.jpg' }); 
+    // } catch (err) {
+    //   console.log("Error en la busqueda en la imagen de Colombia")
+    //   await browser.close()   
+    // }       
     try {
       await page.goto(urlPeru);
       await page.setViewport({ width: 600, height: 600 });
-      await page.screenshot({ path: `BancoPeru.jpg` });
-                
+      await page.screenshot({ path: `BancoPeru.jpg` })
     } catch (err) {
       console.log("Error de busqueda en la imagen de Peru")
       await browser.close()  
     }
     //Banco Uruguay
     try {
-      
       await page.goto(url);
       await page.setViewport({ width: 1920, height: 1080 });
-      const elemen = await page.$(selectorUY)
-      await elemen.screenshot({ path: `BancoUruguay.jpg` });
-    
+      await page.waitForSelector('#ctl00_ctl63_g_8899d5e6_dcfc_4225_83da_4a766737a409 > div > div > div')
+      const exchange = await page.$('#ctl00_ctl63_g_8899d5e6_dcfc_4225_83da_4a766737a409 > div > div > div')
+      await exchange.screenshot({ path: 'BancoUruguay.jpg' });
     } catch (err) {
       console.log("Error en la busqueda en la imagen de Uruguay")
       await browser.close() 
@@ -173,32 +185,23 @@ if( hoy == fechaexacta){
     try {
       await page.goto(urlChile);
       await page.setViewport({ width: 1000, height: 500 });
-      await page.screenshot({ path: `BancoChile.jpg` });
-    
+      await page.screenshot({ path: 'BancoChile.jpg' });
+
     } catch (err) {
       console.log("Error en la busqueda en la imagen de Chile")
       await browser.close() 
     }
-    // Banco Colombia 
-    try {
-      await page.goto(urlColombia);
-      const element = await page.$(selectorCO);
-      await element.screenshot({ path: `BancoColombia.jpg` });
-    
-    } catch (err) {
-      console.log("Error en la busqueda en la imagen de Colombia")
-      await browser.close()   
-    }
     // Banco Costa Rica
-    try {
+  try {
     await page.goto(urlCostaRica);
     await page.setViewport({ width: 500, height: 680 });
-    await page.screenshot({ path: `BancoCostaRica.jpg` });
-} catch (err) {
+    await page.screenshot({ path: 'BancoCostaRica.jpg' });
+    await browser.close()
+  } catch (err) {
   console.log("Error en la busqueda en la imagen de Costa Rica")
   await browser.close()
-}    
-}
+  }
+    }
   const Oanda = async () => {
 
     const urlArray = [
@@ -207,11 +210,11 @@ if( hoy == fechaexacta){
         "https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
         "https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
         "https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Jpy&to=COP&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Brl&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Krw&to=USD&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Eur&to=Clp&amount=1",
-        "https://www.oanda.com/currency-converter/es/?from=Usd&to=Clp&amount=1"
+        "https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=EUR&to=CLP&amount=1",
+        "https://www.oanda.com/currency-converter/es/?from=USD&to=CLP&amount=1"
     ];
      
     const selector = '#scroll-wrap > main > div.block.content-cards-lite-row.card-cheat_sheet_row.background--white > div > div > div.col.cheat_sheet > div > div:nth-child(2) > div';
@@ -235,7 +238,6 @@ if( hoy == fechaexacta){
         // Open URL in current page
         await page.goto(website_url);
         await page.waitForSelector(selector);
-        
         // Capture screenshot
         await page.screenshot({
           path: `Oanda_${i+1}.jpg`,
@@ -243,7 +245,7 @@ if( hoy == fechaexacta){
       }
       // Close the browser instance
       await browser.close();
-      console.log("Busqueda finalizada")
+      console.log(".")
     } catch (err) {
       await browser.close();
       console.log("Error en la busqueda de Oanda")

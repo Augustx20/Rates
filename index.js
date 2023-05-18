@@ -23,8 +23,8 @@ Honduras.Honduras();
 
 setTimeout(() => {
   Oanda.Oanda();
-}, 12000);
+}, 10000);
 
 setTimeout(() => {
   Excel.saveExcel();
-}, 78000)   
+}, 90000)   

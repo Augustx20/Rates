@@ -7,8 +7,7 @@ const Divisa = [];
 const TelefonoArg = [];
 
 const SelectorAr = "#billetes"
-const SelectorD = "#rightHome > div.col-md-3 > div > ul > li.active > a"
-const HistorialAr = "#divisas > table"
+const Selector = "#rightHome > div.col-md-3 > div > div"
 
 const CasoBancoArg = async () => {
     const browser = await puppeteer.launch();
@@ -62,16 +61,26 @@ const CasoBancoArg = async () => {
 //Divisa
 const CasoNumeroDos = async () => {
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        //headless: false,
+        // args: ["--disable-setuid-sandbox", "--start-maximized"],
+        // 'ignoreHTTPSErrors': true,
+        slowMo: 250,
+    });
     const page = await browser.newPage();
-
+    //await page.setViewport({width: 1920, height: 1080})
     try {
         await page.goto(url);
-        await page.waitForSelector(SelectorD);
-        await page.evaluate((sel) => {
-            document.querySelector(sel).click();
-        }, SelectorD);
-                
+        await page.waitForXPath(`//*[@id="rightHome"]/div[1]/div/ul/li[2]/a`, {
+            visible: true,
+        })
+        const [Search] = await page.$x(`//*[@id="rightHome"]/div[1]/div/ul/li[2]/a`);
+        if(Search){
+            await Search.click()
+        }
+        const element = await page.$(Selector);
+        await element.screenshot({path:`Divisa.jpg`});
+                       
     const grabParagraphCasoVenta= await page.evaluate(() =>{
         const pgTag = document.querySelector("#divisas > table > tbody > tr:nth-child(1) > td:nth-child(2)").innerHTML;
         return pgTag;
@@ -82,14 +91,11 @@ const CasoNumeroDos = async () => {
         return pgTag;
     });
 
-
-  
-
     let valorCinco = grabParagraphCasoDos.replace(/,/g,'.');
     let numeroCinco = Number(valorCinco)
     
 
-    // Compra
+    //Compra
    let valorCuatro = grabParagraphCasoVenta.replace(/,/g,'.');
    let numeroCuatro = Number(valorCuatro)
    console.log("Cotizacion Divisa Compra USD ", numeroCuatro);

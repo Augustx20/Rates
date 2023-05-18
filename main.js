@@ -5,4 +5,4 @@ AR71.CasoBancoArg();
 AR71.CasoNumeroDos();
 setTimeout(() => {
 Excel.saveExcel()
-}, 15000);
+}, 20000);
