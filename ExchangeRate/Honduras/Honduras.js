@@ -25,12 +25,25 @@ const Honduras = async () => {
         const pgTag = document.querySelector("#site-banco-honduras > div:nth-child(10) > div.col-8.col-md-8.col-sm-12.padding-main.padding-right-10.tab1-padding-right-0 > article:nth-child(1) > p:nth-child(4) > span > span > span > span > span > span > span").innerHTML;
         return pgTag;
     });
+
+
+    const grabParagraphBancHnEur = await page.evaluate(() =>{
+        const pgTag = document.querySelector("#site-banco-honduras > div:nth-child(10) > div.col-8.col-md-8.col-sm-12.padding-main.padding-right-10.tab1-padding-right-0 > article:nth-child(1) > p:nth-child(10) > span:nth-child(2) > span > span > span > span > span > span").innerHTML;
+        return pgTag;
+    });
+
     await browser.close()
-     let arr = grabParagraphBancHn.split(' ')
+    let arr = grabParagraphBancHn.split(' ')
     let numero = Number(arr);
     console.log(`Banco Honduras USD ${numero}`);
     ArrayHn.push(numero)
-    } catch (err) {
+
+    let arrE = grabParagraphBancHnEur.split(' ')
+    let numeroE = Number(arrE);
+    console.log(`Banco Honduras EUR ${numeroE}`);
+    ArrayHn.push(numeroE)
+
+} catch (err) {
         await browser.close()
         console.log("The page Honduras didn't load")
         let SegOption = 0;

@@ -70,7 +70,6 @@ try {
     const enlacesxx = [
       "https://www.oanda.com/currency-converter/es/?from=BRL&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=CNY&to=HNL&amount=1",
-      "https://www.oanda.com/currency-converter/es/?from=EUR&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=GBP&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=JPY&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=MXN&to=HNL&amount=1",

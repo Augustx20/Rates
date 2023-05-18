@@ -27,4 +27,4 @@ setTimeout(() => {
 
 setTimeout(() => {
   Excel.saveExcel();
-}, 80000)   
+}, 90000)   
