@@ -5,33 +5,27 @@ const ChileArray =[];
 
 const BancoChile = async () => {
     /* Banco Chile  Usd*/
-    const browser = await puppeteer.launch({heandless: false });
+    const browser = await puppeteer.launch({slowMo: 250,headless: 'new'});
     const page = await browser.newPage();
     try {
-    await page.goto(url);
+    await page.goto(url , {waitUntil: 'networkidle2'});
     await page.setViewport({ width: 1920, height: 1080 });
 
-    const grabParagraphBancoChileUsd = await page.evaluate(() =>{
-        const pgTag = document.querySelector("#lblValor1_3").innerHTML;
-        return pgTag;
-    });
+    await page.waitForXPath("//*[@id='lblValor1_3']");
+    let elHandle = await page.$x("//*[@id='lblValor1_3']");
+    let lamudiNewPropertyCount = await page.evaluate(el => el.textContent, elHandle[0]);
 
-    let EditComa = grabParagraphBancoChileUsd.replace(/,/g,'.')
+    let EditComa = lamudiNewPropertyCount.replace(/,/g,'.')
     let numero = Number(EditComa)
     console.log("Banco Chile USD " + numero|| undefined );
-
     ChileArray.push(numero);
-
 /* Banco Chile  Eur*/
-    await page.goto(url);
-    await page.setViewport({ width: 1920, height: 1080 });
 
-    const grabParagraphBancoChileEur= await page.evaluate(() =>{
-        const pgTag = document.querySelector("#lblValor1_5").innerHTML;
-        return pgTag;
-    });
+    await page.waitForXPath("//*[@id='lblValor1_5']");
+    let elHandleE = await page.$x("//*[@id='lblValor1_5']");
+    let lamudiNewPropertyCountE = await page.evaluate(el => el.textContent, elHandleE[0]);
 
-    let EditComaa = grabParagraphBancoChileEur.replace(/,/g,'.')
+    let EditComaa = lamudiNewPropertyCountE.replace(/,/g,'.')
     let numeroo = Number(EditComaa)
     console.log("Banco Chile EUR " + numeroo|| undefined );
 

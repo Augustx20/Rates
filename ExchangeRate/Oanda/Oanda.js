@@ -20,7 +20,7 @@ const Oanda = async () => {
     "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
   ];
 const books = [];
-let launchOption  = {handless: false, args: ['--start-maximized']}
+let launchOption  = {slowMo: 250,headless: 'new'}
 const browser = await puppeteer.launch(launchOption);
 const page = await browser.newPage();
 

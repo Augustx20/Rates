@@ -6,7 +6,7 @@ let url = "https://www.baccredomatic.com/es-ni/personas/otros-servicios?"
 const Ni = async () => {
     
     const header = randomUseragent.getRandom()
-    const browser = await puppeteer.launch({slowMo: 250,headless: 'new',});
+    const browser = await puppeteer.launch({slowMo: 250,headless: 'new'});
     const page = await browser.newPage();
     await page.setUserAgent(header)
     try {

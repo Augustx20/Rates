@@ -7,21 +7,18 @@ const BancoPeru = async () => {
 
 /* Banco  Peru Usd*/
 const header = randomUseragent.getRandom()
-const browser = await puppeteer.launch({heandless: false });
+const browser = await puppeteer.launch({slowMo: 250,headless: 'new',});
 const page = await browser.newPage();   
 await page.setUserAgent(header);
 try {
-    await page.goto(url);
-    await page.waitForSelector('#ctl00_cphContent_rgTipoCambio_ctl00__0');
+    await page.goto(url, {waitUntil: 'networkidle2'});
     await page.setViewport({ width: 1920, height: 1080 });
-    
-    
-    const grabParagraphBancoPeruUsd= await page.evaluate(() =>{
-        const pgTag = document.querySelector("#ctl00_cphContent_rgTipoCambio_ctl00__0 > td:nth-child(3)").innerHTML;
-        return pgTag;
-    });
-    
-    let numero = Number(grabParagraphBancoPeruUsd)
+
+        await page.waitForXPath('//*[@id="ctl00_cphContent_rgTipoCambio_ctl00__0"]/td[3]');
+        let elHandle = await page.$x('//*[@id="ctl00_cphContent_rgTipoCambio_ctl00__0"]/td[3]');
+        let lamudiNewPropertyCount = await page.evaluate(el => el.textContent, elHandle[0]);
+
+    let numero = Number(lamudiNewPropertyCount)
     console.log("Banco Peru USD " + numero|| undefined );
     
     Peusd.push(numero);
