@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const randomUseragent = require('random-useragent');
 
-const url = "https://www.bcu.gub.uy/Estadisticas-e-Indicadores/Paginas/Cotizaciones.aspx"
+const url = "https://www.bcu.gub.uy/Paginas/Default.aspx"
 
 const ArrayU = [];
 /* Banco Uruguay*/
@@ -14,7 +14,7 @@ const BancoUruguayUSD = async () => {
     await page.goto(url, {waitUntil: 'networkidle2'})
     
     await page.waitForXPath('//*[@id="ctl00_ctl63_g_0723770d_f942_45cc_80db_28dc7fa543a2_ctl00_lstCotizaciones"]/tbody/tr[1]/td[3]');
-    let elHandle = await page.$x('//*[@id="ctl00_ctl63_g_0723770d_f942_45cc_80db_28dc7fa543a2_ctl00_lstCotizaciones"]/tbody/tr[1]/td[3]');
+    let elHandle = await page.$x('//*[@id="2225"]/div/div/span[2])');
     let lamudiNewPropertyCount = await page.evaluate(el => el.textContent, elHandle[0]);
     await browser.close()
 
@@ -33,6 +33,3 @@ module.exports = {
     BancoUruguayUSD,
     ArrayU,
 }
-
-
-
