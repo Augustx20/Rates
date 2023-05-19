@@ -62,10 +62,10 @@ const read = async () => {
 
   }
   
-  console.log('Oanda :',data);
-  console.log(IMGUrl);
-  //console.log('Columna C:', columnC);
-  console.log('Bancos :', DataBank);
+ // console.log('Oanda :',data);
+ // console.log(IMGUrl);
+  //console.log(HTMLS);
+ // console.log('Bancos :', DataBank);
   //console.log('Columna G:', columnG);
   //console.log('Columna H:', columnH);
   //console.log('Columna I:', columnI);

@@ -32,3 +32,21 @@ Bancos Completado,Oanda Completado,Proceso Completado,May 3rd 2023, 8:33:35 am
 Bancos Completado,Oanda Completado,Proceso Completado,May 3rd 2023, 9:21:50 pm 
 Bancos Completado,Oanda Completado,Proceso Completado,May 3rd 2023, 9:35:11 pm 
 Bancos Completado,Oanda Completado,Proceso Completado,May 3rd 2023, 9:56:38 pm 
+Banco Error: undefined,Oanda Completado,Proceso Completado,May 18th 2023, 8:15:43 pm 
+Banco Error: undefined,Oanda Completado,Banco Error: undefined,Oanda Completado,Banco Error: undefined,Oanda Completado,Proceso Completado,May 18th 2023, 8:26:46 pm 
+Bancos Completado,Oanda Completado,Bancos Completado,Oanda Completado,Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 8:35:55 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 8:41:40 pm 
+Banco Error: undefined,Oanda Completado,Proceso Completado,May 18th 2023, 8:49:00 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 8:50:33 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 8:53:50 pm 
+Banco Error: undefined,Oanda Completado,Proceso Completado,May 18th 2023, 8:58:09 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 8:58:53 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 9:03:23 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 9:06:35 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 9:10:11 pm 
+Banco Error: undefined,Oanda Completado,Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 9:15:56 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 9:22:03 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 9:23:46 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 9:26:45 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 9:28:11 pm 
+Bancos Completado,Oanda Completado,Proceso Completado,May 18th 2023, 9:32:09 pm 

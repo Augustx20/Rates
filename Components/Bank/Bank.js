@@ -3,6 +3,16 @@ const Info = require('../info')
 const random_useragent = require('random-useragent')
 const fs = require('fs')
 const Bancos = [];
+
+const convertirValor = (valor) => {
+  let procesado = valor.replace(/\s+/g, '');
+  if (procesado.includes(',')) {
+    procesado = procesado.replace(/\./g, '').replace(/,/, '.');
+  }
+  return procesado;
+};
+
+
 const OandaB = async () => {
   const browser = await puppeteer.launch({
     headless: 'new'
@@ -15,31 +25,28 @@ const OandaB = async () => {
       const Sele = Info.HTMLS[i];
       await page.setUserAgent(random_useragent.getRandom())
 
-      await page.goto(enlace);
-      // await page.waitForSelector("#cc-time-series-plot");
+      await page.goto(enlace, { waitUntil: 'networkidle2' });
 
-      const book = await page.evaluate(Sele => {
-        return document.querySelector(Sele).innerHTML;
-      }, Sele);
+      await page.waitForXPath(Sele);
+      let elHandle = await page.$x(Sele);
 
-      const valor = book.replace(/,/g, ".");
-      const numero = Number(valor) || 0;
+      let lamudiNewPropertyCount = await page.evaluate(el => el.textContent, elHandle[0]);
+
+      let numero = convertirValor(lamudiNewPropertyCount);
       Bancos.push(numero);
     }
-    
     await browser.close();
-    if(fs.existsSync('./BaseDate.txt')){
-      fs.appendFileSync('./BaseDate.txt', "Bancos Completado,")
-    } 
+
+    if (fs.existsSync('./BaseDate.txt')) {
+      fs.appendFileSync('./BaseDate.txt', "Bancos Completado,");
+    }
 
     console.log('BancosRate :', Bancos);
     return Bancos;
-
-    
   } catch (err) {
     console.log(Bancos, "Estos tipos de cambios fueron actualizados");
-    if(fs.existsSync('./BaseDate.txt')){
-      fs.appendFileSync('./BaseDate.txt', "Banco Error: " + console.error(`Error en la busqueda: ${err}`)+',' )
+    if (fs.existsSync('./BaseDate.txt')) {
+      fs.appendFileSync('./BaseDate.txt', "Banco Error: " + console.error(`Error en la busqueda: ${err}`) + ',');
     }
     await browser.close();
   }

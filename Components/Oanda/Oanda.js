@@ -24,9 +24,9 @@ try {
     });
 
     // Capture screenshot
-    await page.screenshot({
-    path: `Oanda_${i+1}.jpg`,
-    });
+    // await page.screenshot({
+    // path: `Oanda_${i+1}.jpg`,
+    // });
 
     let valor = book.Data.replace(/,/g, ".");
     let numero = Number(valor);
