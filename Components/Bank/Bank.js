@@ -12,7 +12,6 @@ const convertirValor = (valor) => {
   return procesado;
 };
 
-
 const OandaB = async () => {
   const browser = await puppeteer.launch({
     headless: 'new'
