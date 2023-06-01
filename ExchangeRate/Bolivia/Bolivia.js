@@ -1,10 +1,34 @@
-
 const puppeteer = require('puppeteer');
 const randomUseragent = require('random-useragent');
+const moment = require('moment');
 
 let url = "https://www.bcb.gob.bo/"
 
-const TT = async () => {
+const BOa = []
+
+const isWorkingDay = () => {
+    // Verificar si es lunes a viernes (días hábiles)
+    const today = moment();
+    const isWeekday = today.isoWeekday() >= 1 && today.isoWeekday() <= 5;
+  
+    if (!isWeekday) {
+      return false;
+    }
+  
+    // Verificar si es el primer día del mes
+    const isFirstDayOfMonth = today.date() === 1;
+  
+    return isFirstDayOfMonth;
+  };
+
+const BO = async () => {
+
+    if (!isWorkingDay()) {
+     // console.log("4")
+     let number = 0
+     BOa.push(number)
+        return
+      }
     
     const header = randomUseragent.getRandom()
     const browser = await puppeteer.launch({slowMo: 250,headless: 'new',});
@@ -18,7 +42,8 @@ const TT = async () => {
         let elHandle = await page.$x("//*[@id='content']/div[2]/div/div[1]/div[1]/div/div[2]/div/div/div[3]/div/div/div[1]/div[2]/strong");
         let lamudiNewPropertyCount = await page.evaluate(el => el.textContent, elHandle[0]);
 
-        console.log('Banco Bolivia USD', lamudiNewPropertyCount);  
+        console.log('Banco Bolivia USD', lamudiNewPropertyCount); 
+        BOa.push(lamudiNewPropertyCount)
         await page.screenshot({ path: 'Bolivia.png' });  
         await browser.close()
             
@@ -28,4 +53,7 @@ const TT = async () => {
     }
 };
 
-TT()
+module.exports ={
+    BO,
+    BOa
+}

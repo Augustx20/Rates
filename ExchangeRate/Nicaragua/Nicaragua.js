@@ -1,9 +1,34 @@
 const puppeteer = require('puppeteer');
 const randomUseragent = require('random-useragent');
+const moment = require('moment');
 
 let url = "https://www.baccredomatic.com/es-ni/personas/otros-servicios?"
 
+const NIa = []
+
+const isWorkingDay = () => {
+    // Verificar si es lunes a viernes (días hábiles)
+    const today = moment();
+    const isWeekday = today.isoWeekday() >= 1 && today.isoWeekday() <= 5;
+  
+    if (!isWeekday) {
+      return false;
+    }
+  
+    // Verificar si es el primer día del mes
+    const isFirstDayOfMonth = today.date() === 1;
+  
+    return isFirstDayOfMonth;
+  };
+
 const Ni = async () => {
+
+    if (!isWorkingDay()) {
+     // console.log("3")
+     let number = 0
+     NIa.push(number)
+        return
+      }
     
     const header = randomUseragent.getRandom()
     const browser = await puppeteer.launch({slowMo: 250,headless: 'new'});
@@ -29,11 +54,15 @@ const Ni = async () => {
         let numero = Number(valor);
         
         
-        console.log('Banco Nicaragua USD', numero);    
+        console.log('Banco Nicaragua USD', numero);
+        NIa.push(numero)
     } catch (err) {
         console.error(`Error en la busqueda: ${err}`);
         await browser.close()
     }
 };
 
-Ni()
+module.exports ={
+  Ni,
+  NIa
+}

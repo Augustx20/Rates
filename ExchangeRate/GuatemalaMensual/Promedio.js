@@ -1,7 +1,32 @@
 const puppeteer = require('puppeteer');
 const moment = require('moment');
 
-(async () => {
+
+const GTa = []
+
+const isWorkingDay = () => {
+  // Verificar si es lunes a viernes (días hábiles)
+  const today = moment();
+  const isWeekday = today.isoWeekday() >= 1 && today.isoWeekday() <= 5;
+
+  if (!isWeekday) {
+    return false;
+  }
+
+  // Verificar si es el primer día del mes
+  const isFirstDayOfMonth = today.date() === 1;
+
+  return isFirstDayOfMonth;
+};
+
+const GT = async () => {
+
+  if (!isWorkingDay()) {
+   // console.log("1")
+   let number = 0
+   GTa.push(number)
+    return
+  }
   const browser = await puppeteer.launch({slowMo: 250,headless: 'new',});
   const page = await browser.newPage();
 
@@ -38,8 +63,8 @@ const moment = require('moment');
   const average = sum / tdElements.length;
 
   console.log('Promedio:', average);
-
-console.log(tdElements);  
+  GTa.push(average)
+  console.log(tdElements);  
   
 const tableBoundingBox = await page.evaluate(() => {
     const table = document.querySelector('#table_Data > tbody > tr:nth-child(2) > td'); 
@@ -59,4 +84,9 @@ const tableBoundingBox = await page.evaluate(() => {
   });
 
   await browser.close();
-})();
+};
+
+module.exports = {
+  GT,
+  GTa
+}

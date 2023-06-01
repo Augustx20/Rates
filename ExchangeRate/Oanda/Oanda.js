@@ -106,7 +106,6 @@ await browser.close();
   await browser.close();
 }};
 
-
 module.exports = {
   Oanda,
   OandaArray,

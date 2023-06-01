@@ -7,6 +7,10 @@ const Chile = require('../ExchangeRate/Chile/Chile.js');
 const Guatemala = require('../ExchangeRate/Guatemala/Guatemala');
 const Oanda = require('../ExchangeRate/Oanda/Oanda');
 const Honduras = require('../ExchangeRate/Honduras/Honduras');
+const GuatemalaM = require('../ExchangeRate/GuatemalaMensual/Promedio')
+const TrinidaTobago = require('../ExchangeRate/Trinidad_Tobago/TT')
+const Bolivia = require('../ExchangeRate/Bolivia/Bolivia')
+const Nicaragua = require('../ExchangeRate/Nicaragua/Nicaragua')
 const fs = require('fs');
 const path = require('path');
 
@@ -21,7 +25,7 @@ const createExcelFile = async (data) => {
 const saveExcel = async () => {
   try {
     // Bancos
-    const [cr, uy, co, peEur, PeUsd, cl, gt, hn, oanda] = await Promise.all([
+    const [cr, uy, co, peEur, PeUsd, cl, gt, hn, oanda,GTa,BOa,NIa,TTa] = await Promise.all([
       CostaRica.Cr[0],
       Uruguay.ArrayU[0],
       Colombia.ArrayCo[0],
@@ -31,12 +35,17 @@ const saveExcel = async () => {
       Guatemala.GTQ[0],
       Honduras.ArrayHn,
       Oanda.OandaArray,
+      GuatemalaM.GTa[0],
+      TrinidaTobago.TTa[0],
+      Bolivia.BOa[0],
+      Nicaragua.NIa[0],
+
     ]);
     //  Oanda
     const [eurusd, eurcop, cnyusd, jpyusd, cnycop, jpycop, brlusd, krwusd, usdclp, eurclp, brlhnl, cnyhnl, gbphnl, jpyhnl, mxnhnl, hkdusd, hkdhn] = oanda;
 
     const data = [     
-      ["", "Bancos", "", "", "", "Oanda"],
+      ["","Bancos", "", "", "","Oanda"],
       ["Country", "To /From", "Amount", "", "", "To/From", "Amount"],
       ["CR79", "USD CRC", cr, "", "", "EUR USD", eurusd],
       ["UY77", "USD UYU", uy, "", "", "EUR COP", eurcop],
@@ -53,16 +62,19 @@ const saveExcel = async () => {
       ["AR71","USD Divisa COMPRA","","","","GBP HNL",gbphnl],
       ["AR71","USD Divisa VENTA","","","","JPY HNL",jpyhnl],
       ["AR71","USD Billete VENTA","","","","MXN HNL",mxnhnl],
-      ["","","","","","HKD USD",hkdusd],
-      ["","","","","","HKD HNL",hkdhn]
+      ["","Mensuales","","","","HKD USD",hkdusd],
+      ["TT","USD TTD",TTa,"","","HKD HNL",hkdhn],
+      ["BO","USD BOB",BOa,"","","",""],
+      ["NI","USD NIO",NIa,"","","",""],
+      ["GT79","USD GTQ",GTa,"","","",""]
     ];
 
     const wbBuf = await createExcelFile(data);
 
   // Guardar el archivo de Excel en el disco
   const filename = 'Datos.xlsx';
-  const filepath = path.resolve( filename);
-  fs.writeFileSync(filepath, wbBuf);
+  const filepath = path.resolve(filename);
+  fs.writeFileSync(filepath,wbBuf);
 
   console.log(`El archivo '${filename}' se ha guardado correctamente en '${filepath}'.`);
 }
