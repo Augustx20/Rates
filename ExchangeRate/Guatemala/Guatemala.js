@@ -12,8 +12,7 @@ const PageGuatemala = async () => {
 //Guatemala Viernes
 if (hoy == fechaexacta) {
     console.log("Hoy se ejecuta la Tasa de Guatemala");
-    console.log(" ")
-    const browser = await puppeteer.launch({heandless: false });
+    const browser = await puppeteer.launch({heandless: 'new' });
     const page = await browser.newPage();
     try {
     await page.goto(url);

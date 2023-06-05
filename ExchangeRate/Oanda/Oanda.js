@@ -17,7 +17,6 @@ const Oanda = async () => {
     "https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
     "https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
     "https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1",
-    "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
   ];
 const books = [];
 let launchOption  = {slowMo: 250,headless: 'new'}
@@ -63,10 +62,9 @@ try {
     var j = h.map(i =>{ return isNaN(i) ? 0 : i});
     OandaArray.push(...j);
   
-  
     if (hoy == fechaexacta) {
   
-      // Tasa de Honduras
+      // Tasa de Honduras Panama
     const enlacesxx = [
       "https://www.oanda.com/currency-converter/es/?from=BRL&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=CNY&to=HNL&amount=1",
@@ -75,6 +73,9 @@ try {
       "https://www.oanda.com/currency-converter/es/?from=MXN&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=HKD&to=USD&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=HKD&to=HNL&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=SGD&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=USD&to=EUR&amount=1",
     ];
   const page = await browser.newPage();
   for (let enlaceh of enlacesxx) {

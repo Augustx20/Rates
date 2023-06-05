@@ -2,34 +2,15 @@ const puppeteer = require('puppeteer');
 const randomUseragent = require('random-useragent');
 const moment = require('moment');
 
+const TtMons = []
 let url = "https://www.central-bank.org.tt/"
-const TTa = []
 
-const isWorkingDay = () => {
-    // Verificar si es lunes a viernes (días hábiles)
-    const today = moment();
-    const isWeekday = today.isoWeekday() >= 1 && today.isoWeekday() <= 5;
-  
-    if (!isWeekday) {
-      return false;
-    }
-  
-    // Verificar si es el primer día del mes
-    const isFirstDayOfMonth = today.date() === 1;
-  
-    return isFirstDayOfMonth;
-  };
-const TT = async () => {
+let hoy = moment().format('dddd');
+let fechaexacta = moment('2023-01-02').add(7, 'days').format('dddd');
+const TTMon = async () => {
 
-    if (!isWorkingDay()) {
-    //  console.log("2")
-    let number = 0 
-    TTa.push(number)
-        return
-      }
-    
-      console.log("Ejecutando Tasas Mensuales...");
 
+    if (hoy == fechaexacta) {
     const header = randomUseragent.getRandom()
     const browser = await puppeteer.launch({slowMo: 250,headless: 'new',});
     const page = await browser.newPage();
@@ -44,18 +25,25 @@ const TT = async () => {
 
         console.log('Banco Trinidad & Tobago USD', lamudiNewPropertyCount); 
         let numero = Number(lamudiNewPropertyCount); 
-        TTa.push(numero) 
+        TtMons.push(numero) 
         await page.screenshot({ path: 'TT.png' });
 
+        await page.waitForXPath("//*[@id='block-foobarblock']/table/tbody[2]/tr/td[4]/text()");
+        let elHandleTwo = await page.$x("//*[@id='block-foobarblock']/table/tbody[2]/tr/td[4]/text()");
+        let lamudiNewPropertyCountTwo = await page.evaluate(el => el.textContent, elHandleTwo[0]);
+
+        console.log('Banco Trinidad & Tobago EUR', lamudiNewPropertyCountTwo); 
+        let numeroTwo = Number(lamudiNewPropertyCountTwo); 
+        TtMons.push(numeroTwo) 
 
         await browser.close()
             
     } catch (err) {
         console.error(`Error en la busqueda: ${err}`);
         await browser.close()
-    }}
+    }} else {}}  ;
 
-module.exports ={
-  TT,
-  TTa
+    module.exports ={
+        TTMon,
+        TtMons
 }

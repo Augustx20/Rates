@@ -10,6 +10,7 @@ const Guatemala = require('./ExchangeRate/Guatemala/Guatemala');
 const Honduras = require('./ExchangeRate/Honduras/Honduras');
 const GuatemalaM = require('./ExchangeRate/GuatemalaMensual/Promedio')
 const TrinidaTobago = require('./ExchangeRate/Trinidad_Tobago/TT')
+const TrinidaTobag = require('./ExchangeRate/Trinidad_Tobago/TTMonday')
 const Bolivia = require('./ExchangeRate/Bolivia/Bolivia')
 const Nicaragua = require('./ExchangeRate/Nicaragua/Nicaragua')
 
@@ -19,21 +20,22 @@ const getCurrencies = async () => {
 
   try {
     await Promise.all([
-      Colombia.Colombia(),
+      Uruguay.BancoUruguayUSD(),
       CostaRica.BancoCostaRica(),
+      Colombia.Colombia(),
       Peru.BancoPeru(),
       Chile.BancoChile(),
-      Uruguay.BancoUruguayUSD(),
       Guatemala.PageGuatemala(),
       Honduras.Honduras(),
-      GuatemalaM.GT(),
-      TrinidaTobago.TT(),
-      Bolivia.BO(),
-      Nicaragua.Ni()
+      TrinidaTobag.TTMon()
+      
     ]);
-
-    await Oanda.Oanda();
-    await Excel.saveExcel();
+  await GuatemalaM.GT(),
+  await TrinidaTobago.TT(),
+  await Bolivia.BO(),
+  await Nicaragua.Ni()
+  await Oanda.Oanda();
+  await Excel.saveExcel();
 
     console.log("Búsqueda finalizada");
   } catch (error) {

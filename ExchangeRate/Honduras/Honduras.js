@@ -14,7 +14,7 @@ const Honduras = async () => {
     console.log("Se ejecutara la tasa de Honduras")
     console.log(" ")
     const header = randomUseragent.getRandom()
-    const browser = await puppeteer.launch({ handless: false });
+    const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
     await page.setUserAgent(header)
     try {

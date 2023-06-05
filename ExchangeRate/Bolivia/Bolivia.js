@@ -42,8 +42,14 @@ const BO = async () => {
         let elHandle = await page.$x("//*[@id='content']/div[2]/div/div[1]/div[1]/div/div[2]/div/div/div[3]/div/div/div[1]/div[2]/strong");
         let lamudiNewPropertyCount = await page.evaluate(el => el.textContent, elHandle[0]);
 
-        console.log('Banco Bolivia USD', lamudiNewPropertyCount); 
-        BOa.push(lamudiNewPropertyCount)
+        console.log('Banco Bolivia USD', lamudiNewPropertyCount);
+        let procesado = lamudiNewPropertyCount.replace(/\s+/g,"");
+    
+        let valor = procesado.replace(/,/g,'.')
+        let numero = Number(valor);
+        
+        
+        BOa.push(numero)
         await page.screenshot({ path: 'Bolivia.png' });  
         await browser.close()
             
