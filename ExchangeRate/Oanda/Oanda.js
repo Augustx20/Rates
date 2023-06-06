@@ -66,13 +66,13 @@ try {
   
       // Tasa de Honduras Panama
     const enlacesxx = [
+      "https://www.oanda.com/currency-converter/es/?from=HKD&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=BRL&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=CNY&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=GBP&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=JPY&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=MXN&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=HKD&to=USD&amount=1",
-      "https://www.oanda.com/currency-converter/es/?from=HKD&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=SGD&to=USD&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=USD&to=EUR&amount=1",

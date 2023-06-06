@@ -26,7 +26,6 @@ const Honduras = async () => {
         return pgTag;
     });
 
-
     const grabParagraphBancHnEur = await page.evaluate(() =>{
         const pgTag = document.querySelector("#site-banco-honduras > div:nth-child(10) > div.col-8.col-md-8.col-sm-12.padding-main.padding-right-10.tab1-padding-right-0 > article:nth-child(1) > p:nth-child(10) > span:nth-child(2) > span > span > span > span > span > span").innerHTML;
         return pgTag;

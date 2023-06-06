@@ -36,7 +36,7 @@ const saveExcel = async () => {
       Oanda.OandaArray,
     ]);
     //  Oanda
-    const [eurusd, eurcop, cnyusd, jpyusd, cnycop, jpycop, brlusd, krwusd, usdclp, eurclp, brlhnl, cnyhnl, gbphnl, jpyhnl, mxnhnl, hkdusd, hkdhn, sgdusd, usdeur] = oanda;
+    const [eurusd, eurcop, cnyusd, jpyusd, cnycop, jpycop, brlusd, usdclp, eurclp, brlhnl, cnyhnl, gbphnl, jpyhnl, mxnhnl, hkdusd, hkdhn, krwusd, sgdusd, usdeur] = oanda;
     //MENSUALES Y SEMANALES
     const [TT93] = await Promise.all([TrinidaTobago.TTa[0]]);
     const [TT94] = await Promise.all([TrinidadMon.TtMons]);
