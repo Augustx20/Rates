@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const moment = require("moment");
 
 let hoy = moment().format("dddd");
-let fechaexacta = moment("2023-01-02").add(7, "days").format("dddd");
+let fechaexacta = moment("2023-01-04").add(7, "days").format("dddd");
 
 const h = [];
 const OandaArray = [];
@@ -61,21 +61,21 @@ try {
     };
     var j = h.map(i =>{ return isNaN(i) ? 0 : i});
     OandaArray.push(...j);
-  
-    if (hoy == fechaexacta) {
-  
+
+    if (hoy === fechaexacta) {
+
       // Tasa de Honduras Panama
     const enlacesxx = [
-      "https://www.oanda.com/currency-converter/es/?from=HKD&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=BRL&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=CNY&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=GBP&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=JPY&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=MXN&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=HKD&to=USD&amount=1",
-      "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=HKD&to=HNL&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=SGD&to=USD&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=USD&to=EUR&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
     ];
   const page = await browser.newPage();
   for (let enlaceh of enlacesxx) {
@@ -92,10 +92,10 @@ try {
     let valorXx = Honduras.Data.replace(/,/g, ".");
     let numeroXx = Number(valorXx);
     Hond.push(numeroXx);}
-    
+
     var j = Hond.map(i =>{ return isNaN(i) ? 0 : i});
     OandaArray.push(...j);
-    //console.log(OandaArray)   
+    //console.log(OandaArray)
 } else {}
 
 await browser.close();

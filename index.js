@@ -1,3 +1,4 @@
+//@ts-check
 const Excel = require('./Components/Excel');
 const moment = require('moment');
 const Uruguay = require('./ExchangeRate/Uruguay/Uruguay');
@@ -30,9 +31,9 @@ const getCurrencies = async () => {
       TrinidaTobag.TTMon()
       
     ]);
-  await GuatemalaM.GT(),
-  await TrinidaTobago.TT(),
-  await Bolivia.BO(),
+  await GuatemalaM.GT()
+  await TrinidaTobago.TT()
+  await Bolivia.BO()
   await Nicaragua.Ni()
   await Oanda.Oanda();
   await Excel.saveExcel();
@@ -42,5 +43,4 @@ const getCurrencies = async () => {
     console.error("Error durante la búsqueda:", error);
   }
 };
-
-getCurrencies();
+getCurrencies().then(r =>r);
