@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const xlsx = require("xlsx");
+const xlsx = require('xlsx-populate');
 const CostaRica = require('../ExchangeRate/CostaRica/CostaRica');
 const Uruguay = require('../ExchangeRate/Uruguay/Uruguay');
 const Colombia = require('../ExchangeRate/Colombia/Colombia');
@@ -16,11 +16,18 @@ const Bolivia = require('../ExchangeRate/Bolivia/Bolivia');
 const Nicaragua = require('../ExchangeRate/Nicaragua/Nicaragua');
 
 const createExcelFile = async (data) => {
-  const wb = xlsx.utils.book_new();
-  const ws = xlsx.utils.aoa_to_sheet(data);
-  xlsx.utils.book_append_sheet(wb, ws, "Datos");
-  const wbBuf = xlsx.write(wb, { type: 'buffer' });
-  return wbBuf;
+  const workbook = await xlsx.fromBlankAsync();
+  const sheet = workbook.sheet(0);
+  sheet.name('Datos');
+
+  for (let row = 0; row < data.length; row++) {
+    for (let col = 0; col < data[row].length; col++) {
+      sheet.cell(row + 1, col + 1).value(data[row][col]);
+    }
+  }
+
+  const excelBuffer = await workbook.outputAsync();
+  return excelBuffer;
 };
 
 const saveExcel = async () => {
@@ -39,7 +46,7 @@ const saveExcel = async () => {
     }
 
     // Bancos
-    const [cr, uy, co, peEur, PeUsd, cl, oanda ] = await Promise.all([
+    const [cr, uy, co, peEur, PeUsd, cl, oanda] = await Promise.all([
       CostaRica.Cr[0],
       Uruguay.ArrayU[0],
       Colombia.ArrayCo[0],
@@ -49,7 +56,7 @@ const saveExcel = async () => {
       Oanda.OandaArray,
     ]);
     // Oanda
-    const [eurusd, eurcop, cnyusd, jpyusd, cnycop, jpycop, brlusd, usdclp, eurclp, brlhnl, cnyhnl, gbphnl, jpyhnl, mxnhnl, hkdusd, hkdhn, sgdusd, usdeur,krwusd] = oanda;
+    const [eurusd, eurcop, cnyusd, jpyusd, cnycop, jpycop, brlusd, usdclp, eurclp, brlhnl, cnyhnl, gbphnl, jpyhnl, mxnhnl, hkdusd, hkdhn, sgdusd, usdeur, krwusd] = oanda;
     // MENSUALES Y SEMANALES
     const [TT93] = await Promise.all([TrinidaTobago.TTa[0]]);
     const [TT94] = await Promise.all([TrinidadMon.TtMons]);
@@ -82,23 +89,15 @@ const saveExcel = async () => {
       ["BO78", "USD BOB", BO78, "", "", "KRW USD", krwusd],
       ["GT79", "USD GTQ", GT79, "", ""]
     ];
+    const excelBuffer = await createExcelFile(data);
 
-    // Crear el archivo de Excel 'Datos.xlsx'
-    const wbBuf = await createExcelFile(data);
-    fs.writeFileSync(excelFilePath, wbBuf);
-    console.log(`El archivo 'Datos.xlsx' se ha guardado correctamente en '${excelFilePath}'.`);
-
-    // Crear el archivo de Excel con fecha en la carpeta "validaciones"
-    const excelFileName = `Datos_${dateString}.xlsx`;
-    const excelFilePathWithDate = path.resolve(folderPath, excelFileName);
-    const wbBufWithDate = await createExcelFile(data);
-    fs.writeFileSync(excelFilePathWithDate, wbBufWithDate);
-    console.log(`El archivo '${excelFileName}' se ha guardado correctamente en '${excelFilePathWithDate}'.`);
+    fs.writeFileSync(excelFilePath, excelBuffer, 'binary');
+    console.log('Archivo de Excel guardado correctamente');
   } catch (err) {
     console.error(`Se produjo un error al guardar el archivo de Excel: ${err}`);
   }
 };
+
 module.exports = {
   saveExcel
-
-}
+};

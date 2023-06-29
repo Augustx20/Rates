@@ -36,7 +36,7 @@ const getCurrencies = async () => {
     await Bolivia.BO();
     await Nicaragua.Ni();
     await Oanda.Oanda();
-   // await Excel.saveExcel();
+    await Excel.saveExcel();
 
     console.log("Búsqueda finalizada");
   } catch (error) {

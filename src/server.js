@@ -11,8 +11,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
   });
 
-  app.listen(3000, () => {
-    console.log('Servidor escuchando en el puerto 3000');
+  const server = app.listen(3000, '127.0.0.1', () => {
+    const { address, port } = server.address();
+    const link = `http://${address}:${port}`;
+    console.log(`Servidor escuchando en ${link}`);
   });
 
   app.get('/getcurrencies', async (req, res) => {
