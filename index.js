@@ -9,11 +9,11 @@ const Colombia = require('./ExchangeRate/Colombia/Colombia');
 const CostaRica = require('./ExchangeRate/CostaRica/CostaRica');
 const Guatemala = require('./ExchangeRate/Guatemala/Guatemala');
 const Honduras = require('./ExchangeRate/Honduras/Honduras');
-const GuatemalaM = require('./ExchangeRate/GuatemalaMensual/Promedio')
-const TrinidaTobago = require('./ExchangeRate/Trinidad_Tobago/TT')
-const TrinidaTobag = require('./ExchangeRate/Trinidad_Tobago/TTMonday')
-const Bolivia = require('./ExchangeRate/Bolivia/Bolivia')
-const Nicaragua = require('./ExchangeRate/Nicaragua/Nicaragua')
+const GuatemalaM = require('./ExchangeRate/GuatemalaMensual/Promedio');
+const TrinidaTobago = require('./ExchangeRate/Trinidad_Tobago/TT');
+const TrinidaTobag = require('./ExchangeRate/Trinidad_Tobago/TTMonday');
+const Bolivia = require('./ExchangeRate/Bolivia/Bolivia');
+const Nicaragua = require('./ExchangeRate/Nicaragua/Nicaragua');
 
 const getCurrencies = async () => {
   const hoy = moment().format('dddd');
@@ -29,18 +29,33 @@ const getCurrencies = async () => {
       Guatemala.PageGuatemala(),
       Honduras.Honduras(),
       TrinidaTobag.TTMon()
-      
     ]);
-  await GuatemalaM.GT()
-  await TrinidaTobago.TT()
-  await Bolivia.BO()
-  await Nicaragua.Ni()
-  await Oanda.Oanda();
-  await Excel.saveExcel();
+
+    await GuatemalaM.GT();
+    await TrinidaTobago.TT();
+    await Bolivia.BO();
+    await Nicaragua.Ni();
+    await Oanda.Oanda();
+   // await Excel.saveExcel();
 
     console.log("Búsqueda finalizada");
   } catch (error) {
     console.error("Error durante la búsqueda:", error);
   }
 };
-getCurrencies().then(r =>r);
+
+// Crea un botón
+const button = document.createElement('button');
+button.textContent = 'Ejecutar programa';
+
+// Agrega el botón al cuerpo del documento
+document.body.appendChild(button);
+
+// Agrega un evento de clic al botón
+button.addEventListener('click', async () => {
+  try {
+    await getCurrencies();
+  } catch (error) {
+    console.error("Error durante la búsqueda:", error);
+  }
+});
