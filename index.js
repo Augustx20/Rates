@@ -44,18 +44,9 @@ const getCurrencies = async () => {
   }
 };
 
-// Crea un botón
-const button = document.createElement('button');
-button.textContent = 'Ejecutar programa';
+getCurrencies
 
-// Agrega el botón al cuerpo del documento
-document.body.appendChild(button);
-
-// Agrega un evento de clic al botón
-button.addEventListener('click', async () => {
-  try {
-    await getCurrencies();
-  } catch (error) {
-    console.error("Error durante la búsqueda:", error);
-  }
-});
+module.exports ={
+  getCurrencies
+  
+}
