@@ -15,7 +15,7 @@ const isWorkingDay = () => {
     }
   
     // Verificar si es el primer día del mes
-    const isFirstDayOfMonth = today.date() === 1;
+    const isFirstDayOfMonth = today.date() === 3;
   
     return isFirstDayOfMonth;
   };

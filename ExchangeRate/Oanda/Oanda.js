@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const moment = require("moment");
 
 let hoy = moment().format("dddd");
-let fechaexacta = moment("2023-01-04").add(7, "days").format("dddd");
+let fechaexacta = moment("2023-01-02").add(7, "days").format("dddd");
 
 const h = [];
 const OandaArray = [];
@@ -76,6 +76,12 @@ try {
       "https://www.oanda.com/currency-converter/es/?from=SGD&to=USD&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=USD&to=EUR&amount=1",
       "https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=MYR&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=VND&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=TWD&to=USD&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=JPY&to=CRC&amount=1",
+      "https://www.oanda.com/currency-converter/es/?from=TWD&to=HNL&amount=1",
+
     ];
   const page = await browser.newPage();
   for (let enlaceh of enlacesxx) {

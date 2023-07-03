@@ -4,7 +4,7 @@ const moment = require('moment');
 
 
 let hoy = moment().format('dddd');
-let fechaexacta = moment('2023-01-04').add(7, 'days').format('dddd');
+let fechaexacta = moment('2023-01-02').add(7, 'days').format('dddd');
 const ArrayHn = []
 const url = "https://www.ficohsa.com/hn/honduras/tipo-cambio/"
 

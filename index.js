@@ -1,4 +1,4 @@
-//@ts-check
+
 const Excel = require('./Components/Excel');
 const moment = require('moment');
 const Uruguay = require('./ExchangeRate/Uruguay/Uruguay');
@@ -44,9 +44,9 @@ const getCurrencies = async () => {
   }
 };
 
-getCurrencies
+getCurrencies()
 
-module.exports ={
-  getCurrencies
+// module.exports ={
+//   getCurrencies
   
-}
+// }

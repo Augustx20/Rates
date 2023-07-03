@@ -56,7 +56,7 @@ const saveExcel = async () => {
       Oanda.OandaArray,
     ]);
     // Oanda
-    const [eurusd, eurcop, cnyusd, jpyusd, cnycop, jpycop, brlusd, usdclp, eurclp, brlhnl, cnyhnl, gbphnl, jpyhnl, mxnhnl, hkdusd, hkdhn, sgdusd, usdeur, krwusd] = oanda;
+    const [eurusd, eurcop, cnyusd, jpyusd, cnycop, jpycop, brlusd, usdclp, eurclp, brlhnl, cnyhnl, gbphnl, jpyhnl, mxnhnl, hkdusd, hkdhn, sgdusd, usdeur, krwusd, myrusd,vndusd,twdusd,jpycrc,twdhnl] = oanda;
     // MENSUALES Y SEMANALES
     const [TT93] = await Promise.all([TrinidaTobago.TTa[0]]);
     const [TT94] = await Promise.all([TrinidadMon.TtMons]);
@@ -87,7 +87,11 @@ const saveExcel = async () => {
       ["NI79", "USD NIO", NI79, "", "", "SGD USD", sgdusd],
       ["TT93", "USD TTD", TT93, "", "", "USD EUR", usdeur],
       ["BO78", "USD BOB", BO78, "", "", "KRW USD", krwusd],
-      ["GT79", "USD GTQ", GT79, "", ""]
+      ["GT79", "USD GTQ", GT79, "", "","MYR USD", myrusd],
+      ["", "", "", "", "","VND USD", vndusd],
+      ["", "", "", "", "","TWD USD", twdusd],
+      ["", "", "", "", "","JPY CRC", jpycrc],
+      ["", "", "", "", "","TWD HNL", twdhnl],
     ];
     const excelBuffer = await createExcelFile(data);
 
