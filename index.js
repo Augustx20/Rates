@@ -1,8 +1,8 @@
-const read = require('./Components/info')
-const create = require('./Components/Excel')
-const oanda = require('./Components/Oanda/Oanda')
-const Bancos = require('./Components/Bank/Bank')
-//const img = require('./Components/image/image')
+const read = require('./src/routers/info')
+const create = require('./src/routers/Excel')
+const oanda = require('./src/routers/Oanda')
+const Bancos = require('./src/routers/Bank')
+const img = require('./src/routers/image')
 const fs = require('fs')
 const moment = require('moment')
 
@@ -13,8 +13,8 @@ async function main() {
   //const imagen = await img.Imagenes()
   const processedData = processData(data)
   const processedDatab = processData(dataOanda)
-  //const processdatac = processData(imagen)
-  await create.CreateExcel(processedData,processedDatab)
+  const processdatac = processData(imagen)
+  await create.CreateExcel(processedData,processedDatab, processdatac)
 
   if(fs.existsSync('./BaseDate.txt')){
   fs.appendFileSync('./BaseDate.txt', "Proceso Completado," + moment().format('MMMM Do YYYY, h:mm:ss a ') + "\n" )

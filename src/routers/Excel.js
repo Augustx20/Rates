@@ -1,15 +1,9 @@
-const data = require('./Oanda/Oanda')
-const dataColum = require('./info')
+const data = require('./Oanda')
 const XLSX = require('xlsx');
-const B = require('./Bank/Bank')
+const B = require('./Bank')
 
 const CreateExcel = async () => {
-  const datos = data.OandaArray;
-  const Colum = dataColum.columnB;
-  const ColumS = dataColum.columnC;
-  const ColumE = dataColum.columnG;
-  const ColumH = dataColum.columnH;
-  const Bancos = B.Bancos
+  
 
   // Crear un nuevo array que contenga tanto la columna B como la columna C, y los datos de Oanda
   const worksheetData = [

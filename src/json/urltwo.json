@@ -1,0 +1,26 @@
+{
+    "oanda": {
+    "EURUSD":"https://www.oanda.com/currency-converter/es/?from=EUR&to=USD&amount=1",
+    "EURCOP":"https://www.oanda.com/currency-converter/es/?from=EUR&to=COP&amount=1",
+    "CNYUSD":"https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
+    "JPYUSD":"https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
+    "CNYCOP":"https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
+    "JPYCOP":"https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+    "BRLUSD":"https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1",
+    "BRLHNL":"https://www.oanda.com/currency-converter/es/?from=BRL&to=HNL&amount=1",
+    "CNYHNL":"https://www.oanda.com/currency-converter/es/?from=CNY&to=HNL&amount=1",
+    "GBPHNL":"https://www.oanda.com/currency-converter/es/?from=GBP&to=HNL&amount=1",
+    "JYPHNL":"https://www.oanda.com/currency-converter/es/?from=JPY&to=HNL&amount=1",
+    "MXNHNL":"https://www.oanda.com/currency-converter/es/?from=MXN&to=HNL&amount=1",
+    "HKDUSD":"https://www.oanda.com/currency-converter/es/?from=HKD&to=USD&amount=1",
+    "HKDHNL":"https://www.oanda.com/currency-converter/es/?from=HKD&to=HNL&amount=1",
+    "SGDUSD":"https://www.oanda.com/currency-converter/es/?from=SGD&to=USD&amount=1",
+    "USDEUR":"https://www.oanda.com/currency-converter/es/?from=USD&to=EUR&amount=1",
+    "KRWUSD":"https://www.oanda.com/currency-converter/es/?from=KRW&to=USD&amount=1",
+    "MYRUSD":"https://www.oanda.com/currency-converter/es/?from=MYR&to=USD&amount=1",
+    "VNDUSD":"https://www.oanda.com/currency-converter/es/?from=VND&to=USD&amount=1",
+    "TWDUSD":"https://www.oanda.com/currency-converter/es/?from=TWD&to=USD&amount=1",
+    "JPYCRC":"https://www.oanda.com/currency-converter/es/?from=JPY&to=CRC&amount=1",
+    "TWDHNL":"https://www.oanda.com/currency-converter/es/?from=TWD&to=HNL&amount=1"
+}
+}

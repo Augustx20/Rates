@@ -1,0 +1,47 @@
+{
+    "imagen":[{
+        "colombia":[{
+            "url":"https://www.banrep.gov.co/es",
+            "selector":"//*[@id='block-banrepindicatorsblock']",
+            "selejs":"#block-banrepindicatorsblock > div > div.column.large-3.indicator.indicator--trm",
+            "wih":""
+        }],
+        "uruguay":[{
+            "url":"https://www.bcu.gub.uy/Paginas/Default.aspx",
+            "selector":"//*[@id='ctl00_ctl63_g_8899d5e6_dcfc_4225_83da_4a766737a409']/div/div/div",
+            "selejs":"#WebPartctl00_ctl63_g_8899d5e6_dcfc_4225_83da_4a766737a409",
+            "wih":""
+        }],
+        "chile":[{
+            "url":"https://www.bcentral.cl/web/banco-central",
+            "selector":"//*[@id='_BcentralIndicadoresViewer_INSTANCE_pLcePZ0Eybi8_myTooltipDelegate']/div/div/div[1]/div/div",
+            "selejs":"#_BcentralIndicadoresViewer_INSTANCE_pLcePZ0Eybi8_myTooltipDelegate > div > div > div.fin-indicators-col1 > div > div",
+            "wih":"500"
+        }],
+        "costarica":[{
+            "url":"https://gee.bccr.fi.cr/indicadoreseconomicos/Cuadros/frmVerCatCuadro.aspx?idioma=1&CodCuadro=%20400",
+            "selector":"//*[@id='theTable400']/tbody/tr[2]/td[3]/table/tbody/tr/td/table/tbody/tr[30]/td",
+            "selejs":"#theTable400 > tbody",
+            "wih":"680"
+        }],
+       
+        "peru":[{
+            "url":"https://www.sbs.gob.pe/app/pp/SISTIP_PORTAL/Paginas/Publicacion/TipoCambioPromedio.aspx ",
+            "selector":"//*[@id='ctl00_cphContent_rgTipoCambio_ctl00__0']/td[3]",
+            "selejs":"#ctl00_cphContent_updConsulta > table > tbody > tr > td > table > tbody > tr > td > table",
+            "wih":"600"
+        }],
+        "chileoandaUSD":[{
+            "url":"https://www.oanda.com/currency-converter/es/?from=USD&to=CLP&amount=1",
+            "selector":"//*[@id='cc-time-series-plot']/div/div/div[2]/div/table/tbody/tr[2]/td[2]",
+            "selejs":"#scroll-wrap > main > div.block.content-cards-lite-row.card-currency_converter_row.background--white",
+            "wih":"720"
+        }],
+        "chileoandaEUR":[{
+            "url":"https://www.oanda.com/currency-converter/es/?from=EUR&to=CLP&amount=1",
+            "selector":"//*[@id='cc-time-series-plot']/div/div/div[2]/div/table/tbody/tr[2]/td[2]",
+            "selejs":"#scroll-wrap > main > div.block.content-cards-lite-row.card-currency_converter_row.background--white",
+            "wih":"720"
+        }]
+    }]
+}
