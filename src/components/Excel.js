@@ -1,19 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 const xlsx = require('xlsx-populate');
-const CostaRica = require('../src//ExchangeRate/CostaRica/CostaRica.js');
-const Uruguay = require('../src//ExchangeRate/Uruguay/Uruguay');
-const Colombia = require('../src//ExchangeRate/Colombia/Colombia');
-const Peru = require('../src//ExchangeRate/Peru/Peru');
-const Chile = require('../src//ExchangeRate/Chile/Chile.js');
-const Guatemala = require('../src//ExchangeRate/Guatemala/Guatemala');
-const Oanda = require('../src//ExchangeRate/Oanda/Oanda');
-const Honduras = require('../src//ExchangeRate/Honduras/Honduras');
-const GuatemalaM = require('../src//ExchangeRate/GuatemalaMensual/Promedio');
-const TrinidaTobago = require('../src//ExchangeRate/Trinidad_Tobago/TT');
-const TrinidadMon = require('../src//ExchangeRate/Trinidad_Tobago/TTMonday.js');
-const Bolivia = require('../src//ExchangeRate/Bolivia/Bolivia');
-const Nicaragua = require('../src//ExchangeRate/Nicaragua/Nicaragua');
+const CostaRica = require('../ExchangeRate/CostaRica/CostaRica');
+const Uruguay = require('../ExchangeRate/Uruguay/Uruguay');
+const Colombia = require('../ExchangeRate/Colombia/Colombia');
+const Peru = require('../ExchangeRate/Peru/Peru');
+const Chile = require('../ExchangeRate/Chile/Chile.js');
+const Guatemala = require('../ExchangeRate/Guatemala/Guatemala');
+const Oanda = require('../ExchangeRate/Oanda/Oanda');
+const Honduras = require('../ExchangeRate/Honduras/Honduras');
+const GuatemalaM = require('../ExchangeRate/GuatemalaMensual/Promedio');
+const TrinidaTobago = require('../ExchangeRate/Trinidad_Tobago/TT');
+const TrinidadMon = require('../ExchangeRate/Trinidad_Tobago/TTMonday.js');
+const Bolivia = require('../ExchangeRate/Bolivia/Bolivia');
+const Nicaragua = require('../ExchangeRate/Nicaragua/Nicaragua');
 
 const createExcelFile = async (data) => {
   const workbook = await xlsx.fromBlankAsync();
@@ -37,14 +37,13 @@ const saveExcel = async () => {
     const dateString = today.toISOString().slice(0, 10);
 
     // Ruta del archivo 'Datos.xlsx'
-    const excelFilePath = 'C:/Users/augusto.machado/Desktop/Tasas/Datos.xlsx';
-    
+    const excelFilePath = 'c:/Users/augusto.machado/Desktop/Tasas/Datos.xlsx';
 
     // Carpeta "validaciones"
-    // const folderPath = path.resolve('c:/Users/Usuario/Desktop/Tasas/validaciones');
-    // if (!fs.existsSync(folderPath)) {
-    //   fs.mkdirSync(folderPath);
-    // }
+    const folderPath = path.resolve('c:/Users/augusto.machado/Desktop/Tasas/src/validations');
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath);
+    }
 
     // Bancos
     const [cr, uy, co, peEur, PeUsd, cl, oanda] = await Promise.all([
@@ -57,7 +56,7 @@ const saveExcel = async () => {
       Oanda.OandaArray,
     ]);
     // Oanda
-    const [eurusd, eurcop, cnyusd, jpyusd, cnycop, jpycop, brlusd, usdclp, eurclp, brlhnl, cnyhnl, gbphnl, jpyhnl, mxnhnl, hkdusd, hkdhn, sgdusd, usdeur, krwusd, myrusd,vndusd,twdusd,jpycrc,twdhnl] = oanda;
+    const [eurusd, eurcop, cnyusd, jpyusd, cnycop, jpycop, brlusd, usdclp, eurclp, brlhnl, cnyhnl, gbphnl, jpyhnl, mxnhnl, hkdusd, hkdhn, sgdusd, usdeur, krwusd] = oanda;
     // MENSUALES Y SEMANALES
     const [TT93] = await Promise.all([TrinidaTobago.TTa[0]]);
     const [TT94] = await Promise.all([TrinidadMon.TtMons]);
@@ -88,11 +87,7 @@ const saveExcel = async () => {
       ["NI79", "USD NIO", NI79, "", "", "SGD USD", sgdusd],
       ["TT93", "USD TTD", TT93, "", "", "USD EUR", usdeur],
       ["BO78", "USD BOB", BO78, "", "", "KRW USD", krwusd],
-      ["GT79", "USD GTQ", GT79, "", "","MYR USD", myrusd],
-      ["", "", "", "", "","VND USD", vndusd],
-      ["", "", "", "", "","TWD USD", twdusd],
-      ["", "", "", "", "","JPY CRC", jpycrc],
-      ["", "", "", "", "","TWD HNL", twdhnl],
+      ["GT79", "USD GTQ", GT79, "", ""]
     ];
     const excelBuffer = await createExcelFile(data);
 

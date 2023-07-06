@@ -1,5 +1,5 @@
 const express = require('express');
-const { getCurrencies } = require('..');
+const { getCurrencies } = require('./index.js');
 const path = require('path');
 
 
@@ -8,7 +8,7 @@ const app = express();
 app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'view', 'index.html'));
   });
 
   const server = app.listen(3000, '127.0.0.1', () => {

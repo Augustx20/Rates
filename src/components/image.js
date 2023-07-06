@@ -1,4 +1,5 @@
 
+
 const puppeteer = require('puppeteer');
 const moment = require('moment');
 
@@ -42,16 +43,16 @@ if( hoy == fechaexacta){
       console.log("Error en la busqueda en la imagen de Uruguay")
       await browser.close() 
     }
-    // Banco Colombia 
-    try {
-      await page.goto(urlColombia);
-      const element = await page.$(selectorCO);
-      await element.screenshot({ path: 'BancoColombia.jpg' });
-      await page.close() 
-    } catch (err) {
-      console.log("Error en la busqueda en la imagen de Colombia")
-      await browser.close()   
-    }
+    // // Banco Colombia 
+    // try {
+    //   await page.goto(urlColombia);
+    //   const element = await page.$(selectorCO);
+    //   await element.screenshot({ path: 'BancoColombia.jpg' });
+    //   await page.close() 
+    // } catch (err) {
+    //   console.log("Error en la busqueda en la imagen de Colombia")
+    //   await browser.close()   
+    // }
 
     //Banco Chile
     try {
@@ -254,6 +255,6 @@ if( hoy == fechaexacta){
       
     })();
     }
-    Oanda();
-    BancosImg();
+   //Oanda();
+   BancosImg();
 }

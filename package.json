@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cctx": "^1.0.1",
     "express": "^4.18.2",
     "moment": "^2.29.4",
     "node.js": "^0.0.1-security",
@@ -13,8 +14,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": " node index.js",
-    "dev": "nodemon ./index.js",
+    "start": " nodemon ./src/index.js",
+    "dev": "nodemon ./src/index.js",
     "build": "nodemon ./src/server.js"
   },
   "repository": {

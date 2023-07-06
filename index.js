@@ -1,19 +1,19 @@
 
 const Excel = require('./Components/Excel');
 const moment = require('moment');
-const Uruguay = require('./ExchangeRate/Uruguay/Uruguay');
-const Chile = require('./ExchangeRate/Chile/Chile');
-const Oanda = require('./ExchangeRate/Oanda/Oanda');
-const Peru = require('./ExchangeRate/Peru/Peru');
-const Colombia = require('./ExchangeRate/Colombia/Colombia');
-const CostaRica = require('./ExchangeRate/CostaRica/CostaRica');
-const Guatemala = require('./ExchangeRate/Guatemala/Guatemala');
-const Honduras = require('./ExchangeRate/Honduras/Honduras');
-const GuatemalaM = require('./ExchangeRate/GuatemalaMensual/Promedio');
-const TrinidaTobago = require('./ExchangeRate/Trinidad_Tobago/TT');
-const TrinidaTobag = require('./ExchangeRate/Trinidad_Tobago/TTMonday');
-const Bolivia = require('./ExchangeRate/Bolivia/Bolivia');
-const Nicaragua = require('./ExchangeRate/Nicaragua/Nicaragua');
+const Uruguay = require('./src/ExchangeRate/Uruguay/Uruguay');
+const Chile = require('./src/ExchangeRate/Chile/Chile');
+const Oanda = require('./src/ExchangeRate/Oanda/Oanda');
+const Peru = require('./src/ExchangeRate/Peru/Peru');
+const Colombia = require('./src/ExchangeRate/Colombia/Colombia');
+const CostaRica = require('./src/ExchangeRate/CostaRica/CostaRica');
+const Guatemala = require('./src/ExchangeRate/Guatemala/Guatemala');
+const Honduras = require('./src/ExchangeRate/Honduras/Honduras');
+const GuatemalaM = require('./src/ExchangeRate/GuatemalaMensual/Promedio');
+const TrinidaTobago = require('./src/ExchangeRate/Trinidad_Tobago/TT');
+const TrinidaTobag = require('./src/ExchangeRate/Trinidad_Tobago/TTMonday');
+const Bolivia = require('./src/ExchangeRate/Bolivia/Bolivia');
+const Nicaragua = require('./src/ExchangeRate/Nicaragua/Nicaragua');
 
 const getCurrencies = async () => {
   const hoy = moment().format('dddd');
