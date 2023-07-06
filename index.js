@@ -2,7 +2,6 @@ const read = require('./Components/info')
 const create = require('./Components/Excel')
 const oanda = require('./Components/Oanda/Oanda')
 const Bancos = require('./Components/Bank/Bank')
-const img = require('./Components/image/image')
 const fs = require('fs')
 const moment = require('moment')
 

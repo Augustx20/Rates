@@ -1,8 +1,8 @@
 const puppeteer = require("puppeteer");
-const Info = require('../info')
 const random_useragent = require('random-useragent')
 const fs = require('fs')
-const Bancos = [];
+const Bancos = []
+const data = require('/Users/Usuario/Desktop/Tasas/data.json');
 
 const convertirValor = (valor) => {
   let procesado = valor.replace(/\s+/g, '');
@@ -19,39 +19,50 @@ const OandaB = async () => {
   const page = await browser.newPage();
 
   try {
-    for (let i = 0; i < Info.DataBank.length; i++) {
-      const enlace = Info.DataBank[i];
-      const Sele = Info.HTMLS[i];
-      await page.setUserAgent(random_useragent.getRandom())
+    for (let i = 0; i < data.bancos.length; i++) {
+      const banco = data.bancos[i];
 
-      await page.goto(enlace, { waitUntil: 'networkidle2' });
+      for (const pais in banco) {
+        const datosPais = banco[pais];
 
-      await page.waitForXPath(Sele);
-      let elHandle = await page.$x(Sele);
+        for (let j = 0; j < datosPais.length; j++) {
+          const infoBanco = datosPais[j];
+          const enlace = infoBanco.url;
+          const selector = infoBanco.selector;
 
-      let lamudiNewPropertyCount = await page.evaluate(el => el.textContent, elHandle[0]);
+          await page.setUserAgent(random_useragent.getRandom());
+          await page.goto(enlace, { waitUntil: 'networkidle2' });
+          await page.waitForXPath(selector);
 
-      let numero = convertirValor(lamudiNewPropertyCount);
-      Bancos.push(numero);
+          let elHandle = await page.$x(selector);
+          let valor = await page.evaluate(el => el.textContent, elHandle[0]);
+
+          let numero = convertirValor(valor);
+          Bancos.push(numero);
+        }
+      }
     }
+
     await browser.close();
 
     if (fs.existsSync('./BaseDate.txt')) {
       fs.appendFileSync('./BaseDate.txt', "Bancos Completado,");
     }
 
-    console.log('BancosRate :', Bancos);
+    console.log('BancosRate:', Bancos);
     return Bancos;
   } catch (err) {
     console.log(Bancos, "Estos tipos de cambios fueron actualizados");
+
     if (fs.existsSync('./BaseDate.txt')) {
-      fs.appendFileSync('./BaseDate.txt', "Banco Error: " + console.error(`Error en la busqueda: ${err}`) + ',');
+      fs.appendFileSync('./BaseDate.txt', "Banco Error: " + console.error(`Error en la búsqueda: ${err}`) + ',');
     }
+
     await browser.close();
   }
 };
 
-module.exports = {
-  Bancos,
+module.exports ={
+
   OandaB
-};
+}
