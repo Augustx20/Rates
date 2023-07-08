@@ -5,7 +5,13 @@ const OandaArray = [];
 
 const Oanda = async (json) => {
   const browser = await puppeteer.launch({
-    headless: 'new'
+    headless: false,
+    args: ["--disable-setuid-sandbox",
+    "--disable-gpu",
+    "--disable-dev-shm-usage",
+    "--disable-setuid-sandbox",
+    "--no-sandbox",],
+    'ignoreHTTPSErrors': true,
   });
   const page = await browser.newPage();
 
@@ -34,16 +40,17 @@ const Oanda = async (json) => {
   } catch (err) {
     await browser.close();
     //envio de respuesta a la BaseDate.txt
-    if (fs.existsSync('C:/Users/augusto.machado/Desktop/Tasas/src/uploads/BaseDate.txt')) {
-      fs.appendFileSync('C:/Users/augusto.machado/Desktop/Tasas/src/uploads/BaseDate.txt', "Oanda Error," + console.error(`Error en la búsqueda: ${err}`) + ',');
+    if (fs.existsSync('C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt')) {
+      fs.appendFileSync('C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt', "Oanda Error," + console.error(`Error en la búsqueda: ${err}`) + ',');
     }
   }
 };
 
+
 // Lee el archivo JSON
 // Analizar los json para difernecias de los lunes martes viernes y sabado para directamente depender del dia en el estamos y que se actualice acorda el json
  
-fs.readFile('C:/Users/augusto.machado/Desktop/Tasas/src/json/urltwo.json', 'utf8', (err, data) => {
+fs.readFile('C:/Users/Usuario/Desktop/Tasas/src/json/urltwo.json', 'utf8', (err, data) => {
   if (err) {
     console.error('Error al leer el archivo JSON:', err);
     return;
@@ -57,3 +64,5 @@ fs.readFile('C:/Users/augusto.machado/Desktop/Tasas/src/json/urltwo.json', 'utf8
     console.error('Error al analizar el archivo JSON:', error);
   }
 });
+
+

@@ -1,51 +1,71 @@
+//@ts-check
 const puppeteer = require("puppeteer");
-const random_useragent = require('random-useragent')
-const fs = require('fs')
-const Bancos = []
-const data = require('C:/Users/Usuario/Desktop/Tasas/src/json/data.json')
+const random_useragent = require('random-useragent');
+const fs = require('fs');
+const moment = require('moment')
+const data = require('../json/data.json');
+
 
 const convertirValor = (valor) => {
+  if (typeof valor === 'undefined') {
+    return 0;
+  }
+
   let procesado = valor.replace(/\s+/g, '');
   if (procesado.includes(',')) {
     procesado = procesado.replace(/\./g, '').replace(/,/, '.');
   }
-  return procesado;
-};
 
-const OandaB = async () => {
+  const numero = parseFloat(procesado);
+  if (isNaN(numero)) {
+    return 0;
+  }
+
+  return numero;
+};
+const Bank = async () => {
   const browser = await puppeteer.launch({
-    headless: 'new'
+    headless: 'new',
+    args: [
+      "--disable-setuid-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+    ],
+    ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
-  let Bancos = [];
+  const Bancos = [];
 
   try {
-    while (Bancos.length < 8) {
-      for (let i = 0; i < data.bancos.length; i++) {
-        const banco = data.bancos[i];
+    const today = moment().format("dddd");
+    console.log(today);
+    const dayOfWeek = today;
 
-        for (const pais in banco) {
-          const datosPais = banco[pais];
+    if (data.bancos.hasOwnProperty(dayOfWeek)) {
+      const bancosDia = data.bancos[dayOfWeek];
+      const paises = Object.keys(bancosDia);
 
-          for (let j = 0; j < datosPais.length; j++) {
-            const infoBanco = datosPais[j];
-            const enlace = infoBanco.url;
-            const selector = infoBanco.selector;
+      for (let i = 0; i < paises.length; i++) {
+        const pais = paises[i];
+        const banco = bancosDia[pais];
+        const datosPais = Object.values(banco);
 
-            await page.setUserAgent(random_useragent.getRandom());
-            await page.goto(enlace, { waitUntil: 'networkidle2' });
-            await page.waitForXPath(selector);
+        for (let j = 0; j < datosPais.length; j++) {
+          const infoBanco = datosPais[j];
+          const enlace = infoBanco.url;
+          const selector = infoBanco.selector;
 
-            let elHandle = await page.$x(selector);
-            let valor = await page.evaluate(el => el.textContent, elHandle[0]);
+          await page.setUserAgent(random_useragent.getRandom());
+          await page.goto(enlace, { waitUntil: "networkidle2" });
+          await page.waitForXPath(selector);
 
-            let numero = convertirValor(valor);
-            Bancos.push(numero);
+          let elHandle = await page.$x(selector);
+          let valor = await page.evaluate((el) => el.textContent, elHandle[0]);
 
-            if (Bancos.length >= 8) {
-              break;
-            }
-          }
+          let numero = convertirValor(valor);
+          Bancos.push(numero);
 
           if (Bancos.length >= 8) {
             break;
@@ -60,17 +80,20 @@ const OandaB = async () => {
 
     await browser.close();
 
-    if (fs.existsSync('C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt')) {
-      fs.appendFileSync('C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt', "Bancos Completado,");
+    if (fs.existsSync("C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt")) {
+      fs.appendFileSync(
+        "C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt",
+        "Bancos Completado,"
+      );
     }
 
-    //console.log('BancosRate:', Bancos);
     return Bancos;
   } catch (err) {
-   // console.log(Bancos, "Estos tipos de cambios fueron actualizados");
-
-    if (fs.existsSync('C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt')) {
-      fs.appendFileSync('C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt', "Banco Error: " + console.error(`Error en la búsqueda: ${err}`) + ',');
+    if (fs.existsSync("C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt")) {
+      fs.appendFileSync(
+        "C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt",
+        "Banco Error: " + console.error(`Error en la búsqueda: ${err}`) + ","
+      );
     }
 
     await browser.close();
@@ -78,17 +101,18 @@ const OandaB = async () => {
   }
 };
 
+
 (async () => {
   let bancosRate = [];
-  while (bancosRate.length < 8) {
+  let errorOccurred = false;
+
+  while (bancosRate.length < 8 && !errorOccurred) {
     try {
-      bancosRate = await OandaB();
+      bancosRate = await Bank();
     } catch (err) {
       console.log('Error:', err);
+      errorOccurred = true; // Establecer la bandera de error para detener el bucle
     }
   }
   console.log('BancosRate completo:', bancosRate);
 })();
-
-
-OandaB()

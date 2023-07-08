@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "jest-puppeteer": "^9.0.0",
     "moment": "^2.29.4",
     "node.js": "^0.0.1-security",
     "pupeteer": "^0.0.1",
@@ -26,6 +27,6 @@
   "homepage": "https://github.com/Augustx20/Tasas#readme",
   "description": "",
   "devDependencies": {
-    "puppeteer": "^20.0.0"
+    "puppeteer": "^20.8.0"
   }
 }
