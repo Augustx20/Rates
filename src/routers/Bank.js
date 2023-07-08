@@ -2,8 +2,10 @@
 const puppeteer = require("puppeteer");
 const random_useragent = require('random-useragent');
 const fs = require('fs');
-const moment = require('moment')
-const data = require('../json/data.json');
+const moment = require('moment');
+const data = require('../json/bancos.json');
+const dias = require('../json/dias.json');
+
 
 
 const convertirValor = (valor) => {
@@ -23,6 +25,15 @@ const convertirValor = (valor) => {
 
   return numero;
 };
+
+const getNumOfDays = (dayOfWeek, structure) => {
+  if (structure.hasOwnProperty(dayOfWeek)) {
+    return structure[dayOfWeek];
+  } else {
+    throw new Error(`No se encontró la cantidad de días para ${dayOfWeek}`);
+  }
+};
+
 const Bank = async () => {
   const browser = await puppeteer.launch({
     headless: 'new',
@@ -41,8 +52,9 @@ const Bank = async () => {
   try {
     const today = moment().format("dddd");
     console.log(today);
+    const bancosStructure = dias.banc[0];
+    const cantidadPaginas = getNumOfDays(moment().format("dddd"), bancosStructure);
     const dayOfWeek = today;
-
     if (data.bancos.hasOwnProperty(dayOfWeek)) {
       const bancosDia = data.bancos[dayOfWeek];
       const paises = Object.keys(bancosDia);
@@ -67,12 +79,12 @@ const Bank = async () => {
           let numero = convertirValor(valor);
           Bancos.push(numero);
 
-          if (Bancos.length >= 8) {
+          if (Bancos.length >= cantidadPaginas) {
             break;
           }
         }
 
-        if (Bancos.length >= 8) {
+        if (Bancos.length >= cantidadPaginas) {
           break;
         }
       }
@@ -101,18 +113,24 @@ const Bank = async () => {
   }
 };
 
-
 (async () => {
   let bancosRate = [];
   let errorOccurred = false;
 
-  while (bancosRate.length < 8 && !errorOccurred) {
+  while (!errorOccurred) {
     try {
+      const bancosStructure = dias.banc[0];
+      const cantidadPaginas = getNumOfDays(moment().format("dddd"), bancosStructure);
       bancosRate = await Bank();
+
+      if (bancosRate.length >= cantidadPaginas) {
+        break;
+      }
     } catch (err) {
       console.log('Error:', err);
       errorOccurred = true; // Establecer la bandera de error para detener el bucle
     }
   }
+
   console.log('BancosRate completo:', bancosRate);
 })();

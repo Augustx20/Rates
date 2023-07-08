@@ -1,0 +1,18 @@
+{
+    "banc":[{
+        "monday":12,
+        "tuesday":8,
+        "wednesday":8,
+        "thursday":8,
+        "friday":9,
+        "Saturday":3
+    }],
+    "oanda":[{
+        "monday":22,
+        "tuesday":7,
+        "wednesday":7,
+        "thursday":7,
+        "friday":8,
+        "Saturday":7
+    }]
+}

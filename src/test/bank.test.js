@@ -1,6 +1,6 @@
-const { Bank } = require("../routers/Bank");
+const sum = require("../routers/sum");
 
 
-test('should first', () => { 
-    expect(Bank())
- })
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
