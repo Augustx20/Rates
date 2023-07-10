@@ -5,7 +5,7 @@ const fs = require('fs');
 const moment = require('moment');
 const data = require('../json/bancos.json');
 const dias = require('../json/dias.json');
-
+const Bancos = [];
 
 
 const convertirValor = (valor) => {
@@ -47,14 +47,17 @@ const Bank = async () => {
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
-  const Bancos = [];
+
 
   try {
     const today = moment().format("dddd");
     console.log(today);
     const bancosStructure = dias.banc[0];
+    console.log( bancosStructure)
     const cantidadPaginas = getNumOfDays(moment().format("dddd"), bancosStructure);
+    console.log('2' + cantidadPaginas)
     const dayOfWeek = today;
+    console.log('3' + dayOfWeek)
     if (data.bancos.hasOwnProperty(dayOfWeek)) {
       const bancosDia = data.bancos[dayOfWeek];
       const paises = Object.keys(bancosDia);
@@ -65,10 +68,12 @@ const Bank = async () => {
         const datosPais = Object.values(banco);
 
         for (let j = 0; j < datosPais.length; j++) {
+
+
           const infoBanco = datosPais[j];
           const enlace = infoBanco.url;
           const selector = infoBanco.selector;
-
+          console.log(enlace)
           await page.setUserAgent(random_useragent.getRandom());
           await page.goto(enlace, { waitUntil: "networkidle2" });
           await page.waitForXPath(selector);
@@ -83,7 +88,6 @@ const Bank = async () => {
             break;
           }
         }
-
         if (Bancos.length >= cantidadPaginas) {
           break;
         }

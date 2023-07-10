@@ -8,11 +8,11 @@
         "Saturday":3
     }],
     "oanda":[{
-        "monday":22,
+        "Monday":22,
         "tuesday":7,
         "wednesday":7,
         "thursday":7,
         "friday":8,
-        "Saturday":7
+        "Saturday":22
     }]
 }

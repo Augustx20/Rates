@@ -1,68 +1,84 @@
 const puppeteer = require("puppeteer");
 const fs = require('fs');
+const random_useragent = require('random-useragent');
+const moment = require('moment');
+const data = require('../json/oanda.json');
+const dias = require('../json/dias.json');
 
 const OandaArray = [];
 
-const Oanda = async (json) => {
+const getNumOfDays = (dayOfWeek, structure) => {
+  if (structure.hasOwnProperty(dayOfWeek)) {
+    return structure[dayOfWeek];
+  } else {
+    throw new Error(`No se encontró la cantidad de días para ${dayOfWeek}`);
+  }
+};
+
+const Oanda = async () => {
   const browser = await puppeteer.launch({
-    headless: false,
-    args: ["--disable-setuid-sandbox",
-    "--disable-gpu",
-    "--disable-dev-shm-usage",
-    "--disable-setuid-sandbox",
-    "--no-sandbox",],
-    'ignoreHTTPSErrors': true,
+    headless: "new",
+    args: [
+      "--disable-setuid-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+    ],
+    ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
 
   try {
-    const oandaUrls = json.oanda;
-    for (const currency in oandaUrls) {
-      const url = oandaUrls[currency];
-      await page.goto(url);
-      await page.waitForSelector("#cc-time-series-plot");
-      const book = await page.evaluate(() => {
-        const tmp = {};
-        tmp.Data = document.querySelector(
-          "#cc-time-series-plot > div > div > div:nth-child(2) > div > table > tbody > tr:nth-child(2) > td:nth-child(2)"
-        ).innerHTML;
-        return tmp;
-      });
-
-      let valor = book.Data.replace(/,/g, ".");
-      let numero = Number(valor);
-      OandaArray.push(numero);
+    const today = moment().format("dddd");
+    const oandaStructure = dias.oanda[0];
+    const cantidadPaginas = getNumOfDays(moment().format("dddd"), oandaStructure);
+    const dayOfWeek = today;
+    
+    if (data.oanda.hasOwnProperty(dayOfWeek)) {
+      const oandaDia = data.oanda[dayOfWeek][0];
+      const urls = Object.values(oandaDia);
+      
+      let retryCount = 0;
+      const maxRetries = 3; // Número máximo de reintentos
+      
+      while (OandaArray.length < cantidadPaginas && retryCount < maxRetries) {
+        for (let i = 0; i < urls.length; i++) {
+          const url = urls[i];
+          await page.setUserAgent(random_useragent.getRandom());
+          await page.goto(url, { waitUntil: 'networkidle2' });
+          await page.waitForSelector("#cc-time-series-plot", { visible: true });
+          
+          const inputHandle = await page.$x("//*[@id='cc-main-conversion-block']/div/div[2]/div[3]/div[2]/div[1]/div/input");
+          if (inputHandle.length > 0) {
+            const valordate = await page.evaluate((el) => el.value, inputHandle[0]);
+            const valor = valordate.replace(/,/g, ".");
+            const numero = Number(valor);
+            OandaArray.push(numero);
+            
+            if (OandaArray.length >= cantidadPaginas) {
+              break;
+            }
+          } else {
+            console.log('No se encontró el elemento input');
+          }
+        }
+        
+        retryCount++;
+      }
+      
+      console.log('OandaRate:', OandaArray);
     }
+    
     await browser.close();
-
-    console.log('OandaRate:', OandaArray);
-
   } catch (err) {
     await browser.close();
-    //envio de respuesta a la BaseDate.txt
+    // Envío de respuesta a BaseDate.txt
     if (fs.existsSync('C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt')) {
       fs.appendFileSync('C:/Users/Usuario/Desktop/Tasas/src/uploads/BaseDate.txt', "Oanda Error," + console.error(`Error en la búsqueda: ${err}`) + ',');
     }
   }
 };
 
-
-// Lee el archivo JSON
-// Analizar los json para difernecias de los lunes martes viernes y sabado para directamente depender del dia en el estamos y que se actualice acorda el json
- 
-fs.readFile('C:/Users/Usuario/Desktop/Tasas/src/json/urltwo.json', 'utf8', (err, data) => {
-  if (err) {
-    console.error('Error al leer el archivo JSON:', err);
-    return;
-  }
-
-  try {
-    const json = JSON.parse(data);
-    // Llama a la función Oanda pasando el JSON como argumento
-    Oanda(json);
-  } catch (error) {
-    console.error('Error al analizar el archivo JSON:', error);
-  }
-});
-
-
+// Ejecuta la función Oanda
+Oanda();
