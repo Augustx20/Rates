@@ -80,5 +80,9 @@ const Oanda = async () => {
   }
 };
 
-// Ejecuta la función Oanda
-Oanda();
+
+module.exports = {
+  Oanda,
+  OandaArray
+}
+

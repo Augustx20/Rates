@@ -6,7 +6,14 @@ const data = require('C:/Users/augusto.machado/Desktop/Tasas/src/json/image.json
 
 const Imagenes = async () => {
   const browser = await puppeteer.launch({
-      headless: 'new'}) 
+    headless: "new",
+    args: [
+      "--disable-setuid-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+    ]}) 
   const page = await browser.newPage();
 
   try {

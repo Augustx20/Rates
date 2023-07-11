@@ -52,7 +52,7 @@
           }
         }
       ],
-      "tuesday": [
+      "Tuesday": [
         {
           "colombia": {
             "url": "https://www.banrep.gov.co/es",
@@ -88,7 +88,7 @@
           }
         }
       ],
-      "wednesday": [
+      "Wednesday": [
         {
           "colombia": {
             "url": "https://www.banrep.gov.co/es",
@@ -124,7 +124,7 @@
           }
         }
       ],
-      "thursday": [
+      "Thursday": [
         {
           "colombia": {
             "url": "https://www.banrep.gov.co/es",
@@ -160,7 +160,7 @@
           }
         }
       ],
-      "friday": [{
+      "Friday": [{
           "colombia": {
             "url": "https://www.banrep.gov.co/es",
             "selector": "//*[@id='block-banrepindicatorsblock']/div/div[2]/div[2]/a"

@@ -1,0 +1,16 @@
+{
+"bancos":[{
+  "colombia": "CO75",
+  "uruguay": "UY77",
+  "chile": "CL70",
+  "chileEUR": "CL70",
+  "costarica": "CR79",
+  "peru": "PE83",
+  "chileoandaUSD": "CL70",
+  "chileoandaEUR": "CL70",
+  "trinidadtobagoUSD": "TT98",
+  "trinidadtobagoEUR": "TT98",
+  "hondurasUSD": "HN79",
+  "hondurasEUR": "HN79"
+  }]
+}

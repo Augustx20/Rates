@@ -23,6 +23,55 @@
             "TWDUSD":"https://www.oanda.com/currency-converter/es/?from=TWD&to=USD&amount=1",
             "JPYCRC":"https://www.oanda.com/currency-converter/es/?from=JPY&to=CRC&amount=1",
             "TWDHNL":"https://www.oanda.com/currency-converter/es/?from=TWD&to=HNL&amount=1"
+        }],
+        "Tuesday":[{
+            "EURUSD":"https://www.oanda.com/currency-converter/es/?from=EUR&to=USD&amount=1",
+            "EURCOP":"https://www.oanda.com/currency-converter/es/?from=EUR&to=COP&amount=1",
+            "CNYUSD":"https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
+            "JPYUSD":"https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
+            "CNYCOP":"https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
+            "JPYCOP":"https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+            "BRLUSD":"https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1"
+        }],
+        "Wednesday":[{
+            "EURUSD":"https://www.oanda.com/currency-converter/es/?from=EUR&to=USD&amount=1",
+            "EURCOP":"https://www.oanda.com/currency-converter/es/?from=EUR&to=COP&amount=1",
+            "CNYUSD":"https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
+            "JPYUSD":"https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
+            "CNYCOP":"https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
+            "JPYCOP":"https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+            "BRLUSD":"https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1"
+        }],
+        "Thursday":[{
+            "EURUSD":"https://www.oanda.com/currency-converter/es/?from=EUR&to=USD&amount=1",
+            "EURCOP":"https://www.oanda.com/currency-converter/es/?from=EUR&to=COP&amount=1",
+            "CNYUSD":"https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
+            "JPYUSD":"https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
+            "CNYCOP":"https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
+            "JPYCOP":"https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+            "BRLUSD":"https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1"
+        }],
+        "Friday":[{
+            "EURUSD":"https://www.oanda.com/currency-converter/es/?from=EUR&to=USD&amount=1",
+            "EURCOP":"https://www.oanda.com/currency-converter/es/?from=EUR&to=COP&amount=1",
+            "CNYUSD":"https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
+            "JPYUSD":"https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
+            "CNYCOP":"https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
+            "JPYCOP":"https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+            "BRLUSD":"https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1",
+            "CNYGTQ":"https://www.oanda.com/currency-converter/es/?from=CNY&to=GTQ&amount=1"
+        }],
+        "Saturday":[{
+            "EURUSD":"https://www.oanda.com/currency-converter/es/?from=EUR&to=USD&amount=1",
+            "EURCOP":"https://www.oanda.com/currency-converter/es/?from=EUR&to=COP&amount=1",
+            "CNYUSD":"https://www.oanda.com/currency-converter/es/?from=CNY&to=USD&amount=1",
+            "JPYUSD":"https://www.oanda.com/currency-converter/es/?from=JPY&to=USD&amount=1",
+            "CNYCOP":"https://www.oanda.com/currency-converter/es/?from=CNY&to=COP&amount=1",
+            "JPYCOP":"https://www.oanda.com/currency-converter/es/?from=JPY&to=COP&amount=1",
+            "BRLUSD":"https://www.oanda.com/currency-converter/es/?from=BRL&to=USD&amount=1"
         }]
+
+
+
     }
 }

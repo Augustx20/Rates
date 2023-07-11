@@ -51,13 +51,13 @@ const Bank = async () => {
 
   try {
     const today = moment().format("dddd");
-    console.log(today);
+    //console.log(today);
     const bancosStructure = dias.banc[0];
-    console.log( bancosStructure)
+    //console.log( bancosStructure)
     const cantidadPaginas = getNumOfDays(moment().format("dddd"), bancosStructure);
-    console.log('2' + cantidadPaginas)
+    //console.log('2' + cantidadPaginas)
     const dayOfWeek = today;
-    console.log('3' + dayOfWeek)
+    //console.log('3' + dayOfWeek)
     if (data.bancos.hasOwnProperty(dayOfWeek)) {
       const bancosDia = data.bancos[dayOfWeek];
       const paises = Object.keys(bancosDia);
@@ -73,7 +73,7 @@ const Bank = async () => {
           const infoBanco = datosPais[j];
           const enlace = infoBanco.url;
           const selector = infoBanco.selector;
-          console.log(enlace)
+          //console.log(enlace)
           await page.setUserAgent(random_useragent.getRandom());
           await page.goto(enlace, { waitUntil: "networkidle2" });
           await page.waitForXPath(selector);
@@ -117,7 +117,7 @@ const Bank = async () => {
   }
 };
 
-(async () => {
+const runBank = async () => {
   let bancosRate = [];
   let errorOccurred = false;
 
@@ -137,4 +137,7 @@ const Bank = async () => {
   }
 
   console.log('BancosRate completo:', bancosRate);
-})();
+};
+
+module.exports =  { runBank, Bancos }
+
