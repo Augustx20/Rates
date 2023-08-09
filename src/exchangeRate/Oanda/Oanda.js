@@ -112,7 +112,6 @@ await browser.close();
   console.log("The Page Oanda didn't Load");
   await browser.close();
 }};
-
 module.exports = {
   Oanda,
   OandaArray,

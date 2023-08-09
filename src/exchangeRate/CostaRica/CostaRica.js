@@ -10,6 +10,7 @@ try {
     await page.goto(url , {waitUntil: 'networkidle2'});
     await page.setViewport({ width: 1920, height: 1080 });
 
+
     await page.waitForXPath('//*[@id="theTable400"]/tbody/tr[2]/td[3]/table/tbody/tr/td/table/tbody/tr[30]/td');
     let elHandle = await page.$x('//*[@id="theTable400"]/tbody/tr[2]/td[3]/table/tbody/tr/td/table/tbody/tr[30]/td');
     let lamudiNewPropertyCount = await page.evaluate(el => el.textContent, elHandle[0]);
