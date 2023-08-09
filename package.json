@@ -2,6 +2,7 @@
   "dependencies": {
     "cctx": "^1.0.1",
     "dotenv": "^16.3.1",
+    "excel4node": "^1.8.2",
     "express": "^4.18.2",
     "moment": "^2.29.4",
     "node.js": "^0.0.1-security",

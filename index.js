@@ -1,5 +1,5 @@
 // @ts-nocheck
-const Excel = require('./Components/Excel');
+const Excel = require('./src/components/Excel.js');
 const moment = require('moment');
 const Uruguay = require('./src/ExchangeRate/Uruguay/Uruguay');
 const Chile = require('./src/ExchangeRate/Chile/Chile');
@@ -44,8 +44,8 @@ const getCurrencies = async () => {
   }
 };
 
-getCurrencies()
+//getCurrencies()
 
-// module.exports ={
-//   getCurrencies
-// }
+ module.exports ={
+   getCurrencies
+ }

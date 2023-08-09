@@ -1,7 +1,7 @@
 const express = require('express');
-const { getCurrencies } = require('./index.js');
 const path = require('path');
-
+const { getCurrencies } = require('..');
+const xl = require(`excel4node`);
 
 const app = express();
 
@@ -17,12 +17,19 @@ app.get('/', (req, res) => {
     console.log(`Servidor escuchando en ${link}`);
   });
 
-  app.get('/getcurrencies', async (req, res) => {
+app.get('/getcurrencies', async (req, res,) => {
     try {
       await getCurrencies();
       res.send('¡Currencies obtenidas!');
+
     } catch (error) {
       console.error("Error durante la búsqueda:", error);
       res.status(500).send('Error durante la búsqueda');
     }
+
   });
+
+  app.get('/download', function(req, res){
+    const file = `${__dirname}/tools/Datos.xlsx`;
+    res.download(file); // Set disposition and send it.
+  })   

@@ -14,9 +14,10 @@ const TrinidaTobago = require('../ExchangeRate/Trinidad_Tobago/TT');
 const TrinidadMon = require('../ExchangeRate/Trinidad_Tobago/TTMonday.js');
 const Bolivia = require('../ExchangeRate/Bolivia/Bolivia');
 const Nicaragua = require('../ExchangeRate/Nicaragua/Nicaragua');
+const workbook = require('excel4node/distribution/lib/workbook');
 
 const createExcelFile = async (data) => {
-  const workbook = await xlsx.fromBlankAsync();
+  const workbook = await xlsx.fromBlankAsync('Datos.xlsx');
   const sheet = workbook.sheet(0);
   sheet.name('Datos');
 
@@ -37,7 +38,7 @@ const saveExcel = async () => {
     const dateString = today.toISOString().slice(0, 10);
 
     // Ruta del archivo 'Datos.xlsx'
-    const excelFilePath = 'c:/Users/augusto.machado/Desktop/Tasas/Datos.xlsx';
+    const excelFilePath = 'c:/Users/augusto.machado/Desktop/Tasas/src/tools/Datos.xlsx';
 
     // Carpeta "validaciones"
     const folderPath = path.resolve('c:/Users/augusto.machado/Desktop/Tasas/src/validations');
@@ -103,7 +104,6 @@ const saveExcel = async () => {
     console.error(`Se produjo un error al guardar el archivo de Excel: ${err}`);
   }
 };
-
 module.exports = {
   saveExcel
 };
