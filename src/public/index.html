@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExchangeRate</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" defer />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Glory&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Changa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="wrap">
+             <!-- Header -->
+             <header>
+                <div class="container">
+                    <div class="menu-item" >
+                    <img src="./image/1. kn_logo_standard_positive_rgb.png" alt="logo">
+                    </div>
+                    <a href="/" class="brand">
+                        Exchange Rate
+                    </a>
+                    <ul class="menu" id="menu">
+                        <li class="menu-item">
+                            <a href="/products">
+                                <i class="fas fa-layer-group"></i>User
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://kuehnenagel.sharepoint.com/sites/FINSCAExchangeRateinformation/Shared%20Documents/Forms/AllItems.aspx">
+                                <i class="fas fa-envelope"></i>WIKI
+                            </a>
+                        </li>
+                        <li class="menu-item">
+
+                            <a href="/contact-us">
+                                <i class="fas fa-envelope"></i>Option
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="burger" id="burger" onclick="toggleMobile()">
+                        <i class="fas fa-bars" id="menu-icon"></i>
+                    </div>
+                    
+                </div>
+            </header>
+            <div class="development">
+                <h4>Exchange Rate SCA Region  </h4><BR>
+                </BR>
+                
+            </div>
+        </div>
+
+        <!-- body -->
+    <div>
+            <p>Can you seach automatically rates with this button....</p>
+            <button id="executeButton" class="btn btn-primary me-4">Search ExchangeRate</button>
+            <button id="AttachmentExcel" class="btn btn-secondary">Excel</button>
+
+        <div>
+            <ul id="checklist">
+                <li data-task="uruguay">Uruguay</li>
+                <li data-task="costa Rica">Costa Rica</li>
+                <li data-task="colombia">Colombia</li>
+            </ul>
+        </div>
+
+    </div>
+    <div id="status">
+
+    </div>
+
+    
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="brand">
+                    <div class="hours">
+                        <h4>Opening Hours</h4>
+                        <hr />
+                        <h5>
+                            Mon-Fri: <span>7.40am-10pm</span>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <p>
+                        <a href="">Kuehne+ Nagel</a>
+                    </p>
+                    <p class="copy">
+                        <span>2023 ~ Present</span>
+                    </p>
+                    <p>All Rights Reserved</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="/index.js"></script>
+  <script>
+    
+    // Agrega un evento de clic al botón
+    document.getElementById('executeButton').addEventListener('click', async () => {
+      try {
+        await fetch('/getcurrencies');  // Hace una solicitud GET a la ruta /getcurrencies en el servidor
+        alert('getCurrencies ejecutado');
+      } catch (error) {
+        console.error("Error durante la ejecución de getCurrencies:", error);
+      }
+    });
+    document.getElementById('AttachmentExcel').addEventListener('click', async () => {
+      try {
+        await fetch('/download');  // Hace una solicitud GET a la ruta /getcurrencies en el servidor
+        alert('Download Excel...');
+      } catch (error) {
+        console.error("something went wrong...", error);
+      }
+    });
+  </script>
+</body>
+</html>
+
