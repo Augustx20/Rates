@@ -1,9 +1,12 @@
+
 const express = require('express');
 const path = require('path');
 const { getCurrencies } = require('..');
+const { downloadFile } = require('./utils');
+
 
 const app = express();
-let publicPath = path.resolve(__dirname, 'public');
+let publicPath = path.resolve(__dirname,'public');
 app.use(express.static(publicPath));
 
 //PAGINA PRINCIPAL
@@ -31,7 +34,4 @@ app.get('/getcurrencies', async (req, res,) => {
 
 
 // Le pegamos a la descargar del Datos
-  app.get('/download', function(req, res){
-    const file = `${__dirname}/tools/Datos.xlsx`;
-    res.download(file); // Set disposition and send it.
-  })   
+app.get('/download', downloadFile);

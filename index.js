@@ -1,19 +1,24 @@
 // @ts-nocheck
-const Excel = require('./src/components/Excel.js');
 const moment = require('moment');
-const Uruguay = require('./src/ExchangeRate/Uruguay/Uruguay');
-const Chile = require('./src/ExchangeRate/Chile/Chile');
-const Peru = require('./src/ExchangeRate/Peru/Peru');
-const Colombia = require('./src/ExchangeRate/Colombia/Colombia');
-const CostaRica = require('./src/ExchangeRate/CostaRica/CostaRica');
-const Guatemala = require('./src/ExchangeRate/Guatemala/Guatemala');
-const Honduras = require('./src/ExchangeRate/Honduras/Honduras');
-const GuatemalaM = require('./src/ExchangeRate/GuatemalaMensual/Promedio');
-const TrinidaTobago = require('./src/ExchangeRate/Trinidad_Tobago/TT');
-const TrinidaTobag = require('./src/ExchangeRate/Trinidad_Tobago/TTMonday');
-const Bolivia = require('./src/ExchangeRate/Bolivia/Bolivia');
-const Nicaragua = require('./src/ExchangeRate/Nicaragua/Nicaragua');
-const  Oanda  = require('./src/ExchangeRate/Oanda/Oanda');
+const fs = require('fs');
+const path = require('path'); 
+const Excel = require('/home/augt/Tasas2023/src/components/Excel.js');
+const Uruguay = require('./src/exchangeRate/Uruguay/Uruguay.js');
+const Chile = require('/home/augt/Tasas2023/src/exchangeRate/Chile/Chile.Js');
+const Peru = require('/home/augt/Tasas2023/src/exchangeRate/Peru/Peru.Js');
+const Colombia = require('/home/augt/Tasas2023/src/exchangeRate/Colombia/Colombia.js');
+const CostaRica = require('/home/augt/Tasas2023/src/exchangeRate/CostaRica/CostaRica.js');
+const Guatemala = require('/home/augt/Tasas2023/src/exchangeRate/Guatemala/Guatemala.js');
+const Honduras = require('/home/augt/Tasas2023/src/exchangeRate/Honduras/Honduras.js');
+const GuatemalaM = require('/home/augt/Tasas2023/src/exchangeRate/GuatemalaMensual/Promedio.js');
+const TrinidaTobago = require('/home/augt/Tasas2023/src/exchangeRate/Trinidad_Tobago/TT.js');
+const TrinidaTobag = require('/home/augt/Tasas2023/src/exchangeRate/Trinidad_Tobago/TTMonday.js');
+const Bolivia = require('/home/augt/Tasas2023/src/exchangeRate/Bolivia/Bolivia.js');
+const Nicaragua = require('/home/augt/Tasas2023/src/exchangeRate/Nicaragua/Nicaragua.js');
+const  Oanda  = require('/home/augt/Tasas2023/src/exchangeRate/Oanda/Oanda.js');
+
+
+const finishedProcesses = [];
 
 const getCurrencies = async () => {
   const hoy = moment().format('dddd');
@@ -38,7 +43,23 @@ const getCurrencies = async () => {
     await Oanda.Oanda();
     await Excel.saveExcel();
 
-    console.log("Búsqueda finalizada");
+    finishedProcesses.push(`Proceso terminado con fecha y hora: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
+    const filePath = path.join(__dirname, 'src', 'public', 'uploads', 'finishedProcesses.json');
+
+    try {
+      const existingData = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf-8') : '[]';
+      const dataArray = JSON.parse(existingData);
+    
+      dataArray.push(`Proceso terminado con fecha y hora: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
+    
+      const finishedProcessesJSON = JSON.stringify(dataArray, null, 2);
+    
+      fs.writeFileSync(filePath, finishedProcessesJSON);
+    
+      console.log("Mensaje de proceso terminado agregado al archivo JSON");
+    } catch (error) {
+      console.error("Error al escribir en el archivo JSON:", error);
+    }
   } catch (error) {
     console.error("Error durante la búsqueda:", error);
   }
@@ -47,5 +68,5 @@ const getCurrencies = async () => {
 //getCurrencies()
 
  module.exports ={
-   getCurrencies
+  getCurrencies
  }

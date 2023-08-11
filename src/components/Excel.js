@@ -1,19 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 const xlsx = require('xlsx-populate');
-const CostaRica = require('../ExchangeRate/CostaRica/CostaRica');
-const Uruguay = require('../ExchangeRate/Uruguay/Uruguay');
-const Colombia = require('../ExchangeRate/Colombia/Colombia');
-const Peru = require('../ExchangeRate/Peru/Peru');
-const Chile = require('../ExchangeRate/Chile/Chile.js');
-const Guatemala = require('../ExchangeRate/Guatemala/Guatemala');
-const Oanda = require('../ExchangeRate/Oanda/Oanda');
-const Honduras = require('../ExchangeRate/Honduras/Honduras');
-const GuatemalaM = require('../ExchangeRate/GuatemalaMensual/Promedio');
-const TrinidaTobago = require('../ExchangeRate/Trinidad_Tobago/TT');
-const TrinidadMon = require('../ExchangeRate/Trinidad_Tobago/TTMonday.js');
-const Bolivia = require('../ExchangeRate/Bolivia/Bolivia');
-const Nicaragua = require('../ExchangeRate/Nicaragua/Nicaragua');
+const CostaRica = require('/home/augt/Tasas2023/src/exchangeRate/CostaRica/CostaRica.js');
+const Uruguay = require('/home/augt/Tasas2023/src/exchangeRate/Uruguay/Uruguay.js');
+const Colombia = require('/home/augt/Tasas2023/src/exchangeRate/Colombia/Colombia.js');
+const Peru = require('/home/augt/Tasas2023/src/exchangeRate/Peru/Peru.Js');
+const Chile = require('/home/augt/Tasas2023/src/exchangeRate/Chile/Chile.Js');
+const Guatemala = require('/home/augt/Tasas2023/src/exchangeRate/Guatemala/Guatemala.js');
+const Oanda = require('/home/augt/Tasas2023/src/exchangeRate/Oanda/Oanda.js');
+const Honduras = require('/home/augt/Tasas2023/src/exchangeRate/Honduras/Honduras.js');
+const GuatemalaM = require('/home/augt/Tasas2023/src/exchangeRate/GuatemalaMensual/Promedio.js');
+const TrinidaTobago = require('/home/augt/Tasas2023/src/exchangeRate/Trinidad_Tobago/TT.js');
+const TrinidadMon = require('/home/augt/Tasas2023/src/exchangeRate/Trinidad_Tobago/TTMonday.js');
+const Bolivia = require('/home/augt/Tasas2023/src/exchangeRate/Bolivia/Bolivia.js');
+const Nicaragua = require('/home/augt/Tasas2023/src/exchangeRate/Nicaragua/Nicaragua.js');
 
 
 const createExcelFile = async (data) => {
@@ -38,10 +38,10 @@ const saveExcel = async () => {
     const dateString = today.toISOString().slice(0, 10);
 
     // Ruta del archivo 'Datos.xlsx'
-    const excelFilePath = 'c:/Users/augusto.machado/Desktop/Tasas/src/documentation/Datos.xlsx';
+    const excelFilePath = '/home/augt/Tasas2023/src/documentation/Datos.xlsx';
 
     // Carpeta "validaciones"
-    const folderPath = path.resolve('c:/Users/augusto.machado/Desktop/Tasas/src/validations');
+    const folderPath = path.resolve('/home/augt/Tasas2023/src/validations');
     if (!fs.existsSync(folderPath)) {
       fs.mkdirSync(folderPath);
     }

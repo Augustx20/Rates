@@ -65,24 +65,19 @@
         <div class="column">
             <h2>History</h2>
             <ul id="historial"></ul>
+            <p id="arrayList"></p>
             </div>
             <div class="column">
             <h2>Status Process</h2>
             <p>Can you seach automatically rates with this button....</p>
-            <button id="executeButton" class="btn btn-primary me-4">Search ExchangeRate</button>
-            <button id="AttachmentExcel" class="btn btn-secondary">Excel</button>
+            <button id="executeButton" class="oceano-button">Search ExchangeRate</button>
+            <button id="AttachmentExcel" class="oceano-button">Excel</button>
             </div>
             <div class="column">
             <h2>Pay Attention</h2>
             <p>The word "casa" is Spanish for "house" and refers to a building where people live. It can also refer to a home, which is not just a physical structure, but a place of comfort and safety. In many cultures, the concept of "casa" encompasses family, community, and traditions. Houses can vary in size, shape, and materials depending on the location and culture, but all serve the essential function of providing shelter and a sense of belonging. The word "casa" can also symbolize stability, roots, and a sense of place in the world.</p>
             </div>
-        
     </div>
-    <div id="status">
-
-    </div>
-
-    
         <!-- Footer -->
         <footer>
             <div class="container">
@@ -109,8 +104,42 @@
             </div>
         </footer>
 
-<script src="/src//service/historial.service.js"></script>
-<script src="/src/public/js/alert.js"></script>
+<script >
+    document.addEventListener("DOMContentLoaded", async () => {
+      const arrayListElement = document.getElementById("arrayList");
+
+      try {
+        const response = await fetch('/uploads/finishedProcesses.json');
+        const dataArray = await response.json();
+
+        // Recorrer el array y crear elementos <li> para cada elemento
+        dataArray.forEach(item => {
+          const liElement = document.createElement("li");
+          liElement.textContent = item;
+          arrayListElement.appendChild(liElement);
+        });
+      } catch (error) {
+        console.error("Error al cargar y mostrar los datos:", error);
+      }
+    });
+
+
+</script>
+<script>
+    
+    // Agrega un evento de clic al botón
+    document.getElementById('executeButton').addEventListener('click', async () => {
+      try {
+        await fetch('/getcurrencies');  // Hace una solicitud GET a la ruta /getcurrencies en el servidor
+        alert('getCurrencies ejecutado');
+      } catch (error) {
+        console.error("Error durante la ejecución de getCurrencies:", error);
+      }
+    });
+    document.getElementById('AttachmentExcel').addEventListener('click', () => {
+            const downloadUrl = '/download'; // Cambia esta URL si es necesario
+            window.open(downloadUrl, '_blank');});
+</script>
 </body>
 </html>
 
