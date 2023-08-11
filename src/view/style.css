@@ -58,3 +58,16 @@ body {
     top: 50%;
     transform: translateY(-50%);
 }
+
+
+/* styles.css */
+.task {
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+  }
+  
+  .completed {
+    background-color: green;
+    color: white;
+  }
