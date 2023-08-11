@@ -60,19 +60,23 @@
         </div>
 
         <!-- body -->
-    <div>
+    <div class="body_principal">
+        
+        <div class="column">
+            <h2>History</h2>
+            <ul id="historial"></ul>
+            </div>
+            <div class="column">
+            <h2>Status Process</h2>
             <p>Can you seach automatically rates with this button....</p>
             <button id="executeButton" class="btn btn-primary me-4">Search ExchangeRate</button>
             <button id="AttachmentExcel" class="btn btn-secondary">Excel</button>
-
-        <div>
-            <ul id="checklist">
-                <li data-task="uruguay">Uruguay</li>
-                <li data-task="costa Rica">Costa Rica</li>
-                <li data-task="colombia">Colombia</li>
-            </ul>
-        </div>
-
+            </div>
+            <div class="column">
+            <h2>Pay Attention</h2>
+            <p>The word "casa" is Spanish for "house" and refers to a building where people live. It can also refer to a home, which is not just a physical structure, but a place of comfort and safety. In many cultures, the concept of "casa" encompasses family, community, and traditions. Houses can vary in size, shape, and materials depending on the location and culture, but all serve the essential function of providing shelter and a sense of belonging. The word "casa" can also symbolize stability, roots, and a sense of place in the world.</p>
+            </div>
+        
     </div>
     <div id="status">
 
@@ -105,27 +109,9 @@
             </div>
         </footer>
 
-        <script src="/index.js"></script>
-  <script>
-    
-    // Agrega un evento de clic al botón
-    document.getElementById('executeButton').addEventListener('click', async () => {
-      try {
-        await fetch('/getcurrencies');  // Hace una solicitud GET a la ruta /getcurrencies en el servidor
-        alert('getCurrencies ejecutado');
-      } catch (error) {
-        console.error("Error durante la ejecución de getCurrencies:", error);
-      }
-    });
-    document.getElementById('AttachmentExcel').addEventListener('click', async () => {
-      try {
-        await fetch('/download');  // Hace una solicitud GET a la ruta /getcurrencies en el servidor
-        alert('Download Excel...');
-      } catch (error) {
-        console.error("something went wrong...", error);
-      }
-    });
-  </script>
+<script src="/src//service/historial.service.js"></script>
+<script src="/src/public/js/alert.js"></script>
 </body>
 </html>
+
 

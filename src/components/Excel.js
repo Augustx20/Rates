@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const xlsx = require('xlsx-populate');
-const CostaRica = require('z/ExchangeRate/CostaRica/CostaRica');
+const CostaRica = require('../ExchangeRate/CostaRica/CostaRica');
 const Uruguay = require('../ExchangeRate/Uruguay/Uruguay');
 const Colombia = require('../ExchangeRate/Colombia/Colombia');
 const Peru = require('../ExchangeRate/Peru/Peru');
@@ -14,7 +14,7 @@ const TrinidaTobago = require('../ExchangeRate/Trinidad_Tobago/TT');
 const TrinidadMon = require('../ExchangeRate/Trinidad_Tobago/TTMonday.js');
 const Bolivia = require('../ExchangeRate/Bolivia/Bolivia');
 const Nicaragua = require('../ExchangeRate/Nicaragua/Nicaragua');
-const workbook = require('excel4node/distribution/lib/workbook');
+
 
 const createExcelFile = async (data) => {
   const workbook = await xlsx.fromBlankAsync('Datos.xlsx');
@@ -38,7 +38,7 @@ const saveExcel = async () => {
     const dateString = today.toISOString().slice(0, 10);
 
     // Ruta del archivo 'Datos.xlsx'
-    const excelFilePath = 'c:/Users/augusto.machado/Desktop/Tasas/src/tools/Datos.xlsx';
+    const excelFilePath = 'c:/Users/augusto.machado/Desktop/Tasas/src/documentation/Datos.xlsx';
 
     // Carpeta "validaciones"
     const folderPath = path.resolve('c:/Users/augusto.machado/Desktop/Tasas/src/validations');
@@ -100,6 +100,15 @@ const saveExcel = async () => {
 
     fs.writeFileSync(excelFilePath, excelBuffer, 'binary');
     console.log('Archivo de Excel guardado correctamente');
+
+
+    // Crear el archivo de Excel con fecha en la carpeta "validaciones"
+    const excelFileName = `Datos_${dateString}.xlsx`;
+    const excelFilePathWithDate = path.resolve(folderPath, excelFileName);
+    const wbBufWithDate = await createExcelFile(data);
+    fs.writeFileSync(excelFilePathWithDate, wbBufWithDate);
+    console.log(`El archivo '${excelFileName}' se ha guardado correctamente en '${excelFilePathWithDate}'.`);
+    
   } catch (err) {
     console.error(`Se produjo un error al guardar el archivo de Excel: ${err}`);
   }

@@ -375,19 +375,25 @@ footer .our-contact i {
 
 /* CHECK LIST */
 
-.completado {
-    color: green;
-}
-.no-completado {
-    color: red;
-}
-
-#checklist{
-    list-style: none;
-    padding: 0;
-}
-
-#checlist li {
-    margin: 5px;
-    cursor: pointer;
-}
+.body_principal {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    
+    }
+    
+    .column {
+    flex: 1;
+    border: 2px solid #144385;
+    padding: 20px;
+    color: #144385;
+    }
+    
+    .column h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    }
+    
+    .column p {
+    font-size: 16px;
+    }

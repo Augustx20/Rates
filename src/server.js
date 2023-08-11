@@ -3,13 +3,12 @@ const path = require('path');
 const { getCurrencies } = require('..');
 
 const app = express();
-
-app.use(express.static(__dirname));
-
+let publicPath = path.resolve(__dirname, 'public');
+app.use(express.static(publicPath));
 
 //PAGINA PRINCIPAL
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'view', 'index.html'));
+  res.sendfile(__dirname + '/public/index.html');
   });
 
   const server = app.listen(3000, '127.0.0.1', () => {
@@ -20,7 +19,7 @@ app.get('/', (req, res) => {
 
 
 //DIRECTO A LA BUSUQEDA
-app.get('/getcurrencies', async (req, res,) => {
+app.get('/getcurrencies', async (req, res,) => { 
     try {
       await getCurrencies();
       res.send('¡Currencies obtenidas!');
