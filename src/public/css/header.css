@@ -1,0 +1,129 @@
+/* Header */
+
+header {
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+header img {
+width: 200px;
+height: auto;
+margin-right: 10px;
+border-radius: 1%;
+transition: transform 0.3s ease-in-out;
+}
+.header img:hover{
+    transform: scale(1.1);
+}
+
+header > .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    color: var(--primary);
+    font-weight: bold;
+    font-family: 'Glory', sans-serif;
+    font-size: 1.8rem;
+}
+
+header ul {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+header .menu-item {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 0.9rem;
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+header .menu-item i {
+    margin-right: 0.3rem;
+    display: none;
+}
+
+header .menu a {
+    color: var(--secondary);
+    opacity: 0.9;
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+header .menu-item:hover a {
+    opacity: 1;
+    color: var(--primary);
+}
+
+header .burger {
+    display: none;
+}
+
+header .close-menu  {
+    display: none;
+}
+
+header i {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+@media screen and (max-width: 762px) {
+    header .burger {
+        display: block;
+        color: var(--secondary);
+        position: absolute;
+        right: 1rem;
+    } 
+
+    header .close-menu-icon {
+        display: block;
+        color: var(--secondary);
+        position: absolute;
+        right: 16rem;
+    }
+
+    
+    header ul {
+        flex-direction: column;
+        position: absolute;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 1rem;
+        right: -100%;
+        background-color: var(--primary);
+        width: 40%;
+        top: 0;
+        height: 100vh;
+        transition: all .5s ease;
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        -ms-transition: all .5s ease;
+        -o-transition: all .5s ease;
+}
+
+    header ul.mobile-menu {
+        right: 0;
+    }
+
+    header .menu a {
+        color: white;
+    }
+}

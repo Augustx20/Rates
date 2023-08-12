@@ -50,7 +50,7 @@ const getCurrencies = async () => {
       const existingData = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf-8') : '[]';
       const dataArray = JSON.parse(existingData);
     
-      dataArray.push(`Proceso terminado con fecha y hora: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
+      dataArray.push(`Process completed with date and time: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
     
       const finishedProcessesJSON = JSON.stringify(dataArray, null, 2);
     

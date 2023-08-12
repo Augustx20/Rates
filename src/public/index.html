@@ -6,23 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExchangeRate</title>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" defer />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Glory&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Glory&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Changa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/checkList.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/status.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
     <div class="wrapper">
         <div class="wrap">
-             <!-- Header -->
-             <header>
+            <!-- Header -->
+            <header>
                 <div class="container">
-                    <div class="menu-item" >
-                    <img src="./image/1. kn_logo_standard_positive_rgb.png" alt="logo">
+                    <div class="menu-item">
+                        <img src="./image/1. kn_logo_standard_positive_rgb.png" alt="logo">
                     </div>
                     <a href="/" class="brand">
                         Exchange Rate
@@ -39,52 +41,58 @@
                             </a>
                         </li>
                         <li class="menu-item">
-
                             <a href="/contact-us">
                                 <i class="fas fa-envelope"></i>Option
                             </a>
                         </li>
                     </ul>
-
                     <div class="burger" id="burger" onclick="toggleMobile()">
                         <i class="fas fa-bars" id="menu-icon"></i>
                     </div>
-                    
                 </div>
             </header>
             <div class="development">
-                <h4>Exchange Rate SCA Region  </h4><BR>
-                </BR>
-                
+                <h3>This page is for internal use for the process of searching for types of changes.</h3>
             </div>
         </div>
 
         <!-- body -->
-    <div class="body_principal">
-        
-        <div class="column">
-            <h2>History</h2>
-            <ul id="historial"></ul>
-            <p id="arrayList"></p>
+        <div class="body_principal">
+            <div class="column">
+                <h2>History</h2>
+                <ul id="historial"></ul>
+                <p id="arrayList"></p>
             </div>
             <div class="column">
-            <h2>Status Process</h2>
-            <p>Can you seach automatically rates with this button....</p>
-            <button id="executeButton" class="oceano-button">Search ExchangeRate</button>
-            <button id="AttachmentExcel" class="oceano-button">Excel</button>
+                <h2>Status Process</h2>
+                <p>Can you search automatically rates with this button....</p>
+                <button onclick="buscarValorEnBanco()" class="oceano-button">Search ExchangeRate</button>
+                <button id="AttachmentExcel" class="oceano-button">Excel</button>
+                <div id="miDiv"></div>
             </div>
-            <div class="column">
-            <h2>Pay Attention</h2>
-            <p>The word "casa" is Spanish for "house" and refers to a building where people live. It can also refer to a home, which is not just a physical structure, but a place of comfort and safety. In many cultures, the concept of "casa" encompasses family, community, and traditions. Houses can vary in size, shape, and materials depending on the location and culture, but all serve the essential function of providing shelter and a sense of belonging. The word "casa" can also symbolize stability, roots, and a sense of place in the world.</p>
+            <div class="column container_attention">
+                <h2>Pay Attention!</h2>
+                <p class="description">The button serves to initiate a search for exchange rates of different countries. When you click on the button, it triggers a process that retrieves and displays the exchange rates of various currencies from a designated source. This enables you to quickly access and stay updated on the current currency exchange rates between different countries.</p>
+
+                <br>
+                <ul>
+                    <li>Step 1: Press button...</li>
+                    <li>Step 2: waiting...</li>
+                    <li>Step 3: check confirm...</li>
+                    <li>Step 4: Download Excel...</li>
+                    <!-- Add more steps if needed -->
+                </ul>
+                    <!-- Agrega más medidas si es necesario -->
+                </ul>
             </div>
-    </div>
+        </div>
         <!-- Footer -->
         <footer>
             <div class="container">
                 <div class="brand">
                     <div class="hours">
                         <h4>Opening Hours</h4>
-                        <hr />
+                        <hr>
                         <h5>
                             Mon-Fri: <span>7.40am-10pm</span>
                         </h5>
@@ -103,9 +111,10 @@
                 </div>
             </div>
         </footer>
+    </div>
 
-<script >
-    document.addEventListener("DOMContentLoaded", async () => {
+<script>
+        document.addEventListener("DOMContentLoaded", async () => {
       const arrayListElement = document.getElementById("arrayList");
 
       try {
@@ -123,22 +132,51 @@
       }
     });
 
-
 </script>
 <script>
-    
-    // Agrega un evento de clic al botón
-    document.getElementById('executeButton').addEventListener('click', async () => {
-      try {
-        await fetch('/getcurrencies');  // Hace una solicitud GET a la ruta /getcurrencies en el servidor
-        alert('getCurrencies ejecutado');
-      } catch (error) {
-        console.error("Error durante la ejecución de getCurrencies:", error);
-      }
-    });
     document.getElementById('AttachmentExcel').addEventListener('click', () => {
             const downloadUrl = '/download'; // Cambia esta URL si es necesario
             window.open(downloadUrl, '_blank');});
+
+        function cambiarColor() {
+        var div = document.getElementById("miDiv");
+        var condicion = true; // Cambia esto a la condición que necesitas
+
+        if (condicion) {
+            div.style.backgroundColor = "green";
+        } else {
+            div.style.backgroundColor = "red";
+        }
+    }
+
+    async function buscarValorEnBanco() {
+            var div = document.getElementById("miDiv");
+            cambiarColor("gray");
+            div.innerHTML = "Esperando...";
+
+            try {
+                const response = await fetch('/getcurrencies');
+                const data = await response.json();
+                console.log("Datos del banco:", data);
+
+                // Cambiar el color del div a rojo en caso de éxito
+                cambiarColor("red");
+                div.innerHTML = "Error";
+            } catch (error) {
+                console.error("Error durante la búsqueda en el banco:", error);
+                // Cambiar el color del div a verde en caso de error
+                cambiarColor("green");
+                div.innerHTML = "Listo";
+            }
+        }
+
+        function cambiarColor(color) {
+            var div = document.getElementById("miDiv");
+            div.style.backgroundColor = color;
+        }
+
+    document.getElementById('executeButton').addEventListener('click', buscarValorEnBanco);
+
 </script>
 </body>
 </html>

@@ -1,0 +1,60 @@
+/* CHECK LIST */
+
+.body_principal {
+    display: flex;
+    justify-content: flex-start; /* Cambio de space-between a flex-start */
+    padding: 20px;
+    }
+    
+    .column {
+    flex: 1;
+    border: 2px solid #144385;
+    padding: 20px;
+    color: #144385;
+    }
+    
+    .column h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    }
+    
+    .column p {
+    font-size: 14px;
+    }
+
+    .oceano-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #144385;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 10px;
+    }
+    .oceano-button:hover {
+        background-color: #005a8d;
+    }
+    .container_attention h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .container_attention  ul {
+        list-style-type: disc;
+        margin-left: 20px;
+    }
+
+    .container_attention li {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .column .description {
+        font-size: 14px;
+        line-height: 1.4;
+        margin-bottom: 20px;
+    }
