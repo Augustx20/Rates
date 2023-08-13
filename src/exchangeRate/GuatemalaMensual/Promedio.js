@@ -5,7 +5,6 @@ const moment = require('moment');
 const GTa = []
 
 const isWorkingDay = () => {
-  // Verificar si es lunes a viernes (días hábiles)
   const today = moment();
   const isWeekday = today.isoWeekday() >= 1 && today.isoWeekday() <= 5;
 
@@ -13,11 +12,15 @@ const isWorkingDay = () => {
     return false;
   }
 
-  // Verificar si es el primer día del mes
-  const isFirstDayOfMonth = today.date() === 1;
+  // Verificar si es el primer, segundo o tercer día del mes
+  const dayOfMonth = today.date();
+  const isFirstDayOfMonth = dayOfMonth === 1;
+  const isSecondDayOfMonth = dayOfMonth === 2;
+  const isThirdDayOfMonth = dayOfMonth === 3;
 
-  return isFirstDayOfMonth;
+  return isFirstDayOfMonth || isSecondDayOfMonth || isThirdDayOfMonth;
 };
+
 
 const GT = async () => {
 
