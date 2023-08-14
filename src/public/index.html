@@ -33,13 +33,7 @@
                         <li class="menu-item">
                             <a href="/products">
                                 <i class="fas fa-layer-group"></i>User
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="https://kuehnenagel.sharepoint.com/sites/FINSCAExchangeRateinformation/Shared%20Documents/Forms/AllItems.aspx">
-                                <i class="fas fa-envelope"></i>WIKI
-                            </a>
-                        </li>
+                            <script src="/src/public/test.js"></script>
                         <li class="menu-item">
                             <a href="/contact-us">
                                 <i class="fas fa-envelope"></i>Option
@@ -66,10 +60,32 @@
             <div class="column">
                 <h2>Status Process</h2>
                 <p>Can you search automatically rates with this button....</p>
-                <button onclick="buscarValorEnBanco()" class="oceano-button">Search ExchangeRate</button>
+                
+                <div class="contenedor">
+                    <div class="estacion">
+                        <div class="circulo" data-order="1"></div>
+                        <div class="titulo">Ejecutando</div>
+                    </div>
+                    <div class="linea"></div>
+                    <div class="estacion">
+                        <div class="circulo" data-order="2"></div>
+                        <div class="titulo">Buscando</div>
+                    </div>
+                    <div class="linea"></div>
+                    <div class="estacion">
+                        <div class="circulo" data-order="3"></div>
+                        <div class="titulo">Recopilando</div>
+                    </div>
+                    <div class="linea"></div>
+                    <div class="estacion">
+                        <div class="circulo" data-order="4"></div>
+                        <div class="titulo">Finalizado</div>
+                    </div>
+                </div>
+                    <button id="executeButton" class="oceano-button">Search ExchangeRate</button>
                 <button id="AttachmentExcel" class="oceano-button">Excel</button>
                 <div id="miDiv"></div>
-            </div>
+                </div>
             <div class="column container_attention">
                 <h2>Pay Attention!</h2>
                 <p class="description">The button serves to initiate a search for exchange rates of different countries. When you click on the button, it triggers a process that retrieves and displays the exchange rates of various currencies from a designated source. This enables you to quickly access and stay updated on the current currency exchange rates between different countries.</p>
@@ -134,48 +150,54 @@
 
 </script>
 <script>
-    document.getElementById('AttachmentExcel').addEventListener('click', () => {
-            const downloadUrl = '/download'; // Cambia esta URL si es necesario
-            window.open(downloadUrl, '_blank');});
 
-        function cambiarColor() {
-        var div = document.getElementById("miDiv");
-        var condicion = true; // Cambia esto a la condición que necesitas
+document.getElementById('AttachmentExcel').addEventListener('click', () => {
+const downloadUrl = '/download'; // Cambia esta URL si es necesario
+window.open(downloadUrl, '_blank');});
 
-        if (condicion) {
-            div.style.backgroundColor = "green";
-        } else {
-            div.style.backgroundColor = "red";
-        }
-    }
 
-    async function buscarValorEnBanco() {
-            var div = document.getElementById("miDiv");
-            cambiarColor("gray");
-            div.innerHTML = "Esperando...";
+function cambiarColor(divElement, color) {
+    divElement.style.backgroundColor = color;
+}
 
-            try {
-                const response = await fetch('/getcurrencies');
-                const data = await response.json();
-                console.log("Datos del banco:", data);
+async function buscarValorEnBanco() {
+    const circulos = document.querySelectorAll('.circulo');
+    const tiempoEspera = 2000; // 2 segundos
 
-                // Cambiar el color del div a rojo en caso de éxito
-                cambiarColor("red");
-                div.innerHTML = "Error";
-            } catch (error) {
-                console.error("Error durante la búsqueda en el banco:", error);
-                // Cambiar el color del div a verde en caso de error
-                cambiarColor("green");
-                div.innerHTML = "Listo";
+    // Cambia el primer círculo a amarillo al inicio del proceso
+    cambiarColor(circulos[0], "yellow");
+
+    try {
+        // Espera 2 segundos antes de cambiar los círculos 2 y 3 a amarillo
+        await new Promise(resolve => setTimeout(resolve, tiempoEspera));
+        cambiarColor(circulos[1], "yellow");
+        cambiarColor(circulos[2], "yellow");
+
+        const response = await fetch('/getcurrencies');
+        if (response.ok) {
+            // Cambia todos los círculos a verde si la búsqueda fue exitosa
+            for (let i = 0; i <= 3; i++) {
+                cambiarColor(circulos[i], "green");
             }
+            window.alert("Búsqueda exitosa");
+        } else {
+            // Cambia todos los círculos a rojo si la respuesta no fue exitosa
+            circulos.forEach(circulo => {
+                cambiarColor(circulo, "red");
+            });
+            window.alert("Respuesta del servidor no exitosa");
         }
+    } catch (error) {
+        console.error("Error durante la búsqueda en el banco:", error);
+        // Cambia todos los círculos a rojo si ocurre un error
+        circulos.forEach(circulo => {
+            cambiarColor(circulo, "red");
+        });
+        window.alert("Algo salió mal...");
+    }
+}
 
-        function cambiarColor(color) {
-            var div = document.getElementById("miDiv");
-            div.style.backgroundColor = color;
-        }
-
-    document.getElementById('executeButton').addEventListener('click', buscarValorEnBanco);
+document.getElementById('executeButton').addEventListener('click', buscarValorEnBanco);
 
 </script>
 </body>
