@@ -3,10 +3,11 @@ const moment = require("moment");
 
 let hoy = moment().format("dddd");
 let fechaexacta = moment("2023-01-02").add(7, "days").format("dddd");
-
+let fechaexactaV = moment("2023-08-04").add(7, "days").format("dddd");
 const h = [];
 const OandaArray = [];
-const Hond = []
+const Hond = [];
+const guate = [];
 
 const Oanda = async () => {
   const enlaces = [
@@ -102,7 +103,31 @@ try {
     var j = Hond.map(i =>{ return isNaN(i) ? 0 : i});
     OandaArray.push(...j);
     //console.log(OandaArray)
-} else {}
+    
+}  else if (hoy === fechaexactaV) {
+        // Tasa de Guatemala
+        const enlacesxx = [
+          "https://www.oanda.com/currency-converter/es/?from=CNY&to=GTQ&amount=1"];
+      const page = await browser.newPage();
+      for (let enlaceh of enlacesxx) {
+        await page.goto(enlaceh);
+        await page.waitForSelector("#cc-time-series-plot");
+        const Guatemala = await page.evaluate(() => {
+        const tmp = {};
+        tmp.Data = document.querySelector(
+        "#cc-time-series-plot > div > div > div:nth-child(2) > div > table > tbody > tr:nth-child(2) > td:nth-child(2)"
+        ).innerHTML;
+        return tmp;
+        });
+        books.push(Guatemala);
+        let valorXx = Guatemala.Data.replace(/,/g, ".");
+        let numeroXx = Number(valorXx);
+        guate.push(numeroXx);}
+    
+        var j = guate.map(i =>{ return isNaN(i) ? 0 : i});
+        OandaArray.push(...j);
+}
+else {}
 
 await browser.close();
 
@@ -112,6 +137,7 @@ await browser.close();
   console.log("The Page Oanda didn't Load");
   await browser.close();
 }};
+
 module.exports = {
   Oanda,
   OandaArray,
