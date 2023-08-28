@@ -42,7 +42,6 @@ if( hoy == fechaexacta){
       
       ];
       
-      
       const selector = '#scroll-wrap > main > div.block.content-cards-lite-row.card-cheat_sheet_row.background--white > div > div > div.col.cheat_sheet > div > div:nth-child(2) > div';  
       (async () => {
         // Create a browser instance

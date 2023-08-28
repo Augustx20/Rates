@@ -17,8 +17,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": " nodemon ./src/index.js",
-    "dev": "nodemon ./src/index.js",
+    "start": " nodemon ./index.js",
+    "dev": "nodemon ./index.js",
     "build": "nodemon ./src/server.js"
   },
   "repository": {

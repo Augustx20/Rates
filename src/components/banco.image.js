@@ -13,7 +13,7 @@ if( hoy == fechaexacta){
   console.log("Buscando...")
   const BancosImg = async () => {
     // Banco Peru USD EUR
-    const browser = await puppeteer.launch({});
+    const browser = await puppeteer.launch({slowMo:250, ignoreHTTPSErrors: true});
     const page = await browser.newPage();   
 
 try {
@@ -56,7 +56,6 @@ console.log("Error en la busqueda en la imagen de Costa Rica")
 await browser.close()
 }
  // Honduras
- 
  try {
   await page.goto(urlhonduras);
   await page.setViewport({ width: 1000, height: 500 });
@@ -73,7 +72,7 @@ BancosImg();
 } else{
   const BancosImg = async () => {
         // Banco Peru USD EUR
-        const browser = await puppeteer.launch({});
+        const browser = await puppeteer.launch({slowMo:250, ignoreHTTPSErrors: true});
         const page = await browser.newPage();   
     try {
       await page.goto(urlPeru);
