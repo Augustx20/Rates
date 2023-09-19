@@ -44,11 +44,11 @@
           },
           "hondurasUSD":{
             "url":"https://www.ficohsa.com/hn/honduras/tipo-cambio/",
-            "selector":"//*[@id='site-banco-honduras']/div[2]/div[1]/article[1]/p[2]/span/span/span/span/span/span/span"
+            "selector":"//*[@id='site-banco-honduras']/div[2]/div/div[1]/article[1]/p[2]/span/span/span/span/span/span/span"
           },
           "hondurasEUR":{
             "url":"https://www.ficohsa.com/hn/honduras/tipo-cambio/",
-            "selector":"//*[@id='site-banco-honduras']/div[2]/div[1]/article[1]/p[7]/span[2]/span/span/span/span/span/span"
+            "selector":"//*[@id='site-banco-honduras'/div[2]/div/div[1]/article[1]/p[7]/span[2]/span/span/span/span/span/span"
           }
         }
       ],

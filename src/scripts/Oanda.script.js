@@ -1,11 +1,14 @@
-const puppeteer = require("puppeteer");
-const fs = require('fs');
-const random_useragent = require('random-useragent');
-const moment = require('moment');
+// @ts-check
+//const puppeteer = require("puppeteer");
+import { launch } from 'puppeteer-core';
+import fs from 'fs' 
+//const random_useragent = require('random-useragent');
+import { getRandom } from 'random-useragent';
+import  moment  from 'moment'
 const data = require('../json/oanda.json');
 const dias = require('../json/dias.json');
 
-const OandaArray = [];
+export const OandaArray = [];
 
 const getNumOfDays = (dayOfWeek, structure) => {
   if (structure.hasOwnProperty(dayOfWeek)) {
@@ -15,8 +18,8 @@ const getNumOfDays = (dayOfWeek, structure) => {
   }
 };
 
-const Oanda = async () => {
-  const browser = await puppeteer.launch({
+ export const Oanda = async () => {
+  const browser = await launch({
     headless: "new",
     args: [
       "--disable-setuid-sandbox",
@@ -28,7 +31,7 @@ const Oanda = async () => {
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
-
+  //console.log(page);
   try {
     const today = moment().format("dddd");
     const oandaStructure = dias.oanda[0];
@@ -38,6 +41,7 @@ const Oanda = async () => {
     if (data.oanda.hasOwnProperty(dayOfWeek)) {
       const oandaDia = data.oanda[dayOfWeek][0];
       const urls = Object.values(oandaDia);
+      //console.log(urls);
       
       let retryCount = 0;
       const maxRetries = 3; // Número máximo de reintentos
@@ -45,17 +49,19 @@ const Oanda = async () => {
       while (OandaArray.length < cantidadPaginas && retryCount < maxRetries) {
         for (let i = 0; i < urls.length; i++) {
           const url = urls[i];
-          await page.setUserAgent(random_useragent.getRandom());
+          //console.log(url);
+          await page.setUserAgent(getRandom());
           await page.goto(url, { waitUntil: 'networkidle2' });
           await page.waitForSelector("#cc-time-series-plot", { visible: true });
           
           const inputHandle = await page.$x("//*[@id='cc-main-conversion-block']/div/div[2]/div[3]/div[2]/div[1]/div/input");
           if (inputHandle.length > 0) {
+            // @ts-ignore
             const valordate = await page.evaluate((el) => el.value, inputHandle[0]);
             const valor = valordate.replace(/,/g, ".");
             const numero = Number(valor);
             OandaArray.push(numero);
-            
+            //console.log(numero);
             if (OandaArray.length >= cantidadPaginas) {
               break;
             }
@@ -66,10 +72,8 @@ const Oanda = async () => {
         
         retryCount++;
       }
-      
-      console.log('OandaRate:', OandaArray);
     }
-    
+    console.log('OandaRate:', OandaArray);
     await browser.close();
   } catch (err) {
     await browser.close();
@@ -81,8 +85,4 @@ const Oanda = async () => {
 };
 
 
-module.exports = {
-  Oanda,
-  OandaArray
-}
 

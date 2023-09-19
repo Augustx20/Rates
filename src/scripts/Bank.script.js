@@ -1,4 +1,5 @@
 //@ts-check
+// @ts-ignore
 const puppeteer = require("puppeteer");
 const random_useragent = require('random-useragent');
 const fs = require('fs');
@@ -47,6 +48,7 @@ const Bank = async () => {
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
+  console.log(page)
 
 
   try {
@@ -55,7 +57,7 @@ const Bank = async () => {
     const bancosStructure = dias.banc[0];
     //console.log( bancosStructure)
     const cantidadPaginas = getNumOfDays(moment().format("dddd"), bancosStructure);
-    //console.log('2' + cantidadPaginas)
+    console.log('2' + cantidadPaginas)
     const dayOfWeek = today;
     //console.log('3' + dayOfWeek)
     if (data.bancos.hasOwnProperty(dayOfWeek)) {
@@ -68,12 +70,12 @@ const Bank = async () => {
         const datosPais = Object.values(banco);
 
         for (let j = 0; j < datosPais.length; j++) {
-
+          console.log(j)
 
           const infoBanco = datosPais[j];
           const enlace = infoBanco.url;
           const selector = infoBanco.selector;
-          //console.log(enlace)
+          console.log(enlace)
           await page.setUserAgent(random_useragent.getRandom());
           await page.goto(enlace, { waitUntil: "networkidle2" });
           await page.waitForXPath(selector);

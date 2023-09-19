@@ -1,7 +1,8 @@
-const companyData = require('../json/company.json');
-const XLSX = require('xlsx');
-const Oanda = require('./Oanda.script');
-const Bank = require('./Bank.script');
+//const companyData = require('../json/company.json');
+//const XLSX = require('xlsx');
+import XLSX from 'xlsx'
+import { OandaArray } from './Oanda.script.js';
+//const Bank = require('./Bank.script');
 
 const getCompany = (name) => {
   const companies = companyData.bancos[0];
@@ -11,7 +12,7 @@ const getCompany = (name) => {
 const createExcel = async () => {
   try {
     // Obtener los datos de Oanda y Bank
-    const [oandaData, bankData] = await Promise.all([Oanda.OandaArray, Bank.Bancos]);
+    const [oandaData, bankData] = await Promise.all([OandaArray, Bank.Bancos]);
 
     // Verificar que los datos estén en el formato esperado
     if (!Array.isArray(oandaData) || !Array.isArray(bankData)) {
@@ -45,6 +46,4 @@ const createExcel = async () => {
   }
 };
 
-module.exports = {
-  createExcel,
-};
+export default createExcel
