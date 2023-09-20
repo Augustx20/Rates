@@ -8,6 +8,7 @@ import { usersRouter } from './routers/Users.routes.js';
 import path from 'path';
 import { __dirname } from './utils/path.js';
 import { oandaRouter } from './routers/oanda.routes.js';
+import { DayRouter } from './routers/days.routes.js';
 
 const app = express();
 const port = 8000;
@@ -36,5 +37,6 @@ app.use(
 //  app.use('*', error)
 app.use('/api/users', usersRouter)
 app.use('/api/oanda', oandaRouter)
+app.use('/api/days', DayRouter)
   
   
